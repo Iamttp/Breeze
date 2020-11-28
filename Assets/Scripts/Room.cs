@@ -5,6 +5,11 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [Header("")]
+    public GameObject leftObj;
+    public GameObject rightObj;
+    public GameObject upObj;
+    public GameObject downObj;
+    
     public GameObject leftDoor;
     public GameObject rightDoor;
     public GameObject upDoor;
@@ -25,6 +30,11 @@ public class Room : MonoBehaviour
         rightDoor.SetActive(!right);
         upDoor.SetActive(!up);
         downDoor.SetActive(!down);
+        
+        leftObj.SetActive(left);
+        rightObj.SetActive(right);
+        upObj.SetActive(up);
+        downObj.SetActive(down);
     }
 
     void Update()
