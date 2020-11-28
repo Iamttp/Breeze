@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class RoomCreator : MonoBehaviour
 {
+    [HideInInspector]
+    public static RoomCreator instance;
+
     [Header("房间信息")]
     public GameObject roomPrefab;
     public int roomNum;
@@ -25,6 +28,11 @@ public class RoomCreator : MonoBehaviour
     [HideInInspector]
     public Direction direction;
 
+    void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         Application.targetFrameRate = 30;
@@ -32,8 +40,8 @@ public class RoomCreator : MonoBehaviour
         generatorPoint = transform;
         for (int i = 0; i < roomNum; i++)
         {
-            ChangePointPos();
             rooms.Add(Instantiate(roomPrefab, generatorPoint.position, Quaternion.identity).GetComponent<Room>());
+            ChangePointPos();
         }
         rooms[0].GetComponent<SpriteRenderer>().color = startCol;//改变第1个房间的颜色
         rooms[roomNum - 1].GetComponent<SpriteRenderer>().color = endCol;
@@ -46,6 +54,7 @@ public class RoomCreator : MonoBehaviour
 
     void ChangePointPos()
     {
+        vis.Add(generatorPoint.position);
         do
         {
             direction = (Direction)Random.Range(0, 4);
@@ -65,7 +74,6 @@ public class RoomCreator : MonoBehaviour
                     break;
             }
         } while (vis.Contains(generatorPoint.position));
-        vis.Add(generatorPoint.position);
     }
 
     void SetRoad(int index)
@@ -79,9 +87,9 @@ public class RoomCreator : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKey)
-        {
-            SceneManager.LoadScene(0);
-        }
+        //if (Input.anyKey)
+        //{
+        //    SceneManager.LoadScene(0);
+        //}
     }
 }
