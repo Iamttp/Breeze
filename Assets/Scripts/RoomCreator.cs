@@ -31,11 +31,13 @@ public class RoomCreator : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        Application.targetFrameRate = 30;
+        Screen.SetResolution(1920, 1920 / 2, true);
     }
 
     void Start()
     {
-        Application.targetFrameRate = 30;
 
         generatorPoint = transform;
         for (int i = 0; i < roomNum; i++)
