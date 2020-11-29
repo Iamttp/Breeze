@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class ComputerControll : MonoBehaviour
 {
-    Person p;
+    IPerson p;
     Transform target;
 
     public float followDis; // 2
 
     void Start()
     {
-        p = GetComponent<Person>();
+        p = GetComponent<IPerson>();
         target = GameObject.Find("Player").transform;
     }
 
     void Update()
     {
         followTarget();
-        // 攻击检测
-        if (Random.value > 0.99) p.attack();
+        // 攻击
+        if (Random.value > 0.99f) p.attack();
     }
 
+
+    private Vector3 lastPos;
+    private float timeOfDelay;
     void followTarget()
     {
         const float smoothDoor = 0.9f;
@@ -33,14 +36,35 @@ public class ComputerControll : MonoBehaviour
         var tfpos = transform.position;
         if (Vector3.Distance(tgpos, tfpos) < followDis)
         {
-            p.moveVec.x = p.moveVec.y = 0;
+            p.setMove(new Vector2(0, 0));
             p.move();
             return;
         }
-        if (tgpos.x - tfpos.x > smoothVal) p.moveVec.x = p.moveVec.x * smoothDoor + 1 * (1 - smoothDoor);
-        else if(tgpos.x - tfpos.x < -smoothVal) p.moveVec.x = p.moveVec.x * smoothDoor + -1 * (1 - smoothDoor);
-        if (tgpos.y - tfpos.y > smoothVal) p.moveVec.y = p.moveVec.y * smoothDoor + 1 * (1 - smoothDoor);
-        else if(tgpos.y - tfpos.y < -smoothVal) p.moveVec.y = p.moveVec.y * smoothDoor + -1 * (1 - smoothDoor);
+
+        var tempMove = p.getMove();
+        if (tgpos.x - tfpos.x > smoothVal) tempMove.x = tempMove.x * smoothDoor + 1 * (1 - smoothDoor);
+        else if (tgpos.x - tfpos.x < -smoothVal) tempMove.x = tempMove.x * smoothDoor + -1 * (1 - smoothDoor);
+        if (tgpos.y - tfpos.y > smoothVal) tempMove.y = tempMove.y * smoothDoor + 1 * (1 - smoothDoor);
+        else if (tgpos.y - tfpos.y < -smoothVal) tempMove.y = tempMove.y * smoothDoor + -1 * (1 - smoothDoor);
+        p.setMove(tempMove);
         p.move();
+
+        // 被阻挡随机运动解决，离得太远仍然不行
+        if (Vector3.Distance(lastPos, tfpos) < 0.01f)
+        {
+            timeOfDelay += Time.deltaTime;
+            if (timeOfDelay >= 0.1f)
+            {
+                timeOfDelay = 0;
+                var temp = new Vector2(Random.value - 0.5f, Random.value - 0.5f);
+                p.setMove(p.getMove() + temp * 10);
+                p.move();
+            }
+        }
+        else
+        {
+            timeOfDelay = 0;
+        }
+        lastPos = tfpos;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Person : MonoBehaviour
+public class Person : MonoBehaviour, IPerson
 {
     Animator anim;
     Rigidbody2D rg;
@@ -16,8 +16,7 @@ public class Person : MonoBehaviour
 
     private int lifeVal;
 
-    [HideInInspector]
-    public Vector2 moveVec;
+    private Vector2 moveVec;
 
     void Start()
     {
@@ -87,6 +86,16 @@ public class Person : MonoBehaviour
     {
         anim.SetBool("dead", true);
         StartCoroutine(deadOver());
+    }
+
+    public Vector2 getMove()
+    {
+        return moveVec;
+    }
+    
+    public void setMove(Vector2 vec)
+    {
+        moveVec = vec;
     }
 
     IEnumerator deadOver()
