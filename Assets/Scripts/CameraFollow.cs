@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public float speed;
+    public float speed; // 30
 
     [HideInInspector]
     public Vector3 target;

@@ -7,7 +7,7 @@ public class ComputerControll : MonoBehaviour
     Person p;
     Transform target;
 
-    public float followDis = 1;
+    public float followDis; // 2
 
     void Start()
     {

@@ -27,6 +27,5 @@ public class PlayerControll : MonoBehaviour
 
         // 攻击检测
         if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) p.attack();
-        if (Input.GetMouseButton(1)) p.hit();
     }
 }
