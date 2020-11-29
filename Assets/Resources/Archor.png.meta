@@ -1,0 +1,1250 @@
+fileFormatVersion: 2
+guid: d3710c94d39ac2544ac64e6097b46290
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4038703510038480856
+    second: Adventurer_Sprite_Sheet_0
+  - first:
+      213: -5996119347906603527
+    second: Adventurer_Sprite_Sheet_1
+  - first:
+      213: -1861880045541173478
+    second: Adventurer_Sprite_Sheet_2
+  - first:
+      213: 7548474969260010341
+    second: Adventurer_Sprite_Sheet_3
+  - first:
+      213: 1440181663366794068
+    second: Adventurer_Sprite_Sheet_4
+  - first:
+      213: -7719311079141089874
+    second: Adventurer_Sprite_Sheet_5
+  - first:
+      213: -1432338564703374100
+    second: Adventurer_Sprite_Sheet_6
+  - first:
+      213: -3288730209826056421
+    second: Adventurer_Sprite_Sheet_7
+  - first:
+      213: 4936682462875497990
+    second: Adventurer_Sprite_Sheet_8
+  - first:
+      213: -5241504547953991461
+    second: Adventurer_Sprite_Sheet_9
+  - first:
+      213: 142308819948726436
+    second: Adventurer_Sprite_Sheet_10
+  - first:
+      213: 4252154314109092034
+    second: Adventurer_Sprite_Sheet_11
+  - first:
+      213: 7537831879608827378
+    second: Adventurer_Sprite_Sheet_12
+  - first:
+      213: 3265481721196785865
+    second: Adventurer_Sprite_Sheet_13
+  - first:
+      213: 2027336899715204104
+    second: Adventurer_Sprite_Sheet_14
+  - first:
+      213: -2336861385183178164
+    second: Adventurer_Sprite_Sheet_15
+  - first:
+      213: 8212387583966409808
+    second: Adventurer_Sprite_Sheet_16
+  - first:
+      213: -8443565408287494555
+    second: Adventurer_Sprite_Sheet_17
+  - first:
+      213: -3652263502698303348
+    second: Adventurer_Sprite_Sheet_18
+  - first:
+      213: 5559013450366680868
+    second: Adventurer_Sprite_Sheet_19
+  - first:
+      213: -3135504479951528688
+    second: Adventurer_Sprite_Sheet_20
+  - first:
+      213: -3345061635257385733
+    second: Adventurer_Sprite_Sheet_21
+  - first:
+      213: -256796545664279541
+    second: Adventurer_Sprite_Sheet_22
+  - first:
+      213: 2243695981684019961
+    second: Adventurer_Sprite_Sheet_23
+  - first:
+      213: 6229909756440658072
+    second: Adventurer_Sprite_Sheet_24
+  - first:
+      213: 3271378642998333652
+    second: Adventurer_Sprite_Sheet_25
+  - first:
+      213: 4170703410701267074
+    second: Adventurer_Sprite_Sheet_26
+  - first:
+      213: 4604595275855149553
+    second: Adventurer_Sprite_Sheet_27
+  - first:
+      213: 5281906924195440602
+    second: Adventurer_Sprite_Sheet_28
+  - first:
+      213: 1152572309150227757
+    second: Adventurer_Sprite_Sheet_29
+  - first:
+      213: -7992133925122682443
+    second: Adventurer_Sprite_Sheet_30
+  - first:
+      213: 7181682329058757764
+    second: Adventurer_Sprite_Sheet_31
+  - first:
+      213: -8784912067427402993
+    second: Adventurer_Sprite_Sheet_32
+  - first:
+      213: -1152496778619949356
+    second: Adventurer_Sprite_Sheet_33
+  - first:
+      213: -5682691347469238072
+    second: Adventurer_Sprite_Sheet_34
+  - first:
+      213: -4647038095014933136
+    second: Adventurer_Sprite_Sheet_35
+  - first:
+      213: -5429931547442263963
+    second: Adventurer_Sprite_Sheet_36
+  - first:
+      213: -4118818818443933419
+    second: Adventurer_Sprite_Sheet_37
+  - first:
+      213: 7298531613051746615
+    second: Adventurer_Sprite_Sheet_38
+  - first:
+      213: -8422418915629948341
+    second: Adventurer_Sprite_Sheet_39
+  - first:
+      213: -5739200292070637530
+    second: Adventurer_Sprite_Sheet_40
+  - first:
+      213: -351755775467522325
+    second: Adventurer_Sprite_Sheet_41
+  - first:
+      213: 2328556287077615519
+    second: Archor_0
+  - first:
+      213: -3784531987007647808
+    second: Archor_1
+  - first:
+      213: -5719107250297419682
+    second: Archor_2
+  - first:
+      213: 3290303575422005105
+    second: Archor_3
+  - first:
+      213: 1707852052130048863
+    second: Archor_4
+  - first:
+      213: 1639640106165187639
+    second: Archor_5
+  - first:
+      213: -5520297991982714500
+    second: Archor_6
+  - first:
+      213: 1673287480807554532
+    second: Archor_7
+  - first:
+      213: -4425294749037547230
+    second: Archor_8
+  - first:
+      213: 8324149170726774191
+    second: Archor_9
+  - first:
+      213: 8895463324998909346
+    second: Archor_10
+  - first:
+      213: 4065955085236463383
+    second: Archor_11
+  - first:
+      213: 17458131829925525
+    second: Archor_12
+  - first:
+      213: 6805879777407614967
+    second: Archor_13
+  - first:
+      213: -2469391049745962545
+    second: Archor_14
+  - first:
+      213: -7096973271903794881
+    second: Archor_15
+  - first:
+      213: 7609332089472602717
+    second: Archor_16
+  - first:
+      213: 8546182230493086207
+    second: Archor_17
+  - first:
+      213: 4081642830024414685
+    second: Archor_18
+  - first:
+      213: -4151959316668728491
+    second: Archor_19
+  - first:
+      213: -3487175647433533977
+    second: Archor_20
+  - first:
+      213: -4581757186540930104
+    second: Archor_21
+  - first:
+      213: 4607967288160745494
+    second: Archor_22
+  - first:
+      213: -7421742122932075792
+    second: Archor_23
+  - first:
+      213: -1138895643183380864
+    second: Archor_24
+  - first:
+      213: 4518204204551129220
+    second: Archor_25
+  - first:
+      213: 7222588550236646539
+    second: Archor_26
+  - first:
+      213: 6472596979316766499
+    second: Archor_27
+  - first:
+      213: -5647001862967786916
+    second: Archor_28
+  - first:
+      213: 7890009991891737079
+    second: Archor_29
+  - first:
+      213: 6330629581237605263
+    second: Archor_30
+  - first:
+      213: 2087601491361510701
+    second: Archor_31
+  - first:
+      213: 3683454348193432587
+    second: Archor_32
+  - first:
+      213: -6021494614607697051
+    second: Archor_33
+  - first:
+      213: 8026942840248653310
+    second: Archor_34
+  - first:
+      213: 2889434561461694082
+    second: Archor_35
+  - first:
+      213: -3036158847793317919
+    second: Archor_36
+  - first:
+      213: -4755203684570728510
+    second: Archor_37
+  - first:
+      213: -3904827478659085792
+    second: Archor_38
+  - first:
+      213: -9109952820413544619
+    second: Archor_39
+  - first:
+      213: -6554358426192819006
+    second: Archor_40
+  - first:
+      213: -193424201382365812
+    second: Archor_41
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Archor_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9783ca1b91b05020800000000000000
+      internalID: 2328556287077615519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 132
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cf4e498534aa7bc0800000000000000
+      internalID: -3784531987007647808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 132
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5849a9c146a1a0b0800000000000000
+      internalID: -5719107250297419682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_3
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 132
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17fe9384ba189ad20800000000000000
+      internalID: 3290303575422005105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_4
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b2220946283b710800000000000000
+      internalID: 1707852052130048863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_5
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 734b5774dfb21c610800000000000000
+      internalID: 1639640106165187639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_6
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c71719d5936f363b0800000000000000
+      internalID: -5520297991982714500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_7
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ed74ac2916b83710800000000000000
+      internalID: 1673287480807554532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_8
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22137393fd13692c0800000000000000
+      internalID: -4425294749037547230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_9
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa5288a4191558370800000000000000
+      internalID: 8324149170726774191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_10
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ad331f83c8037b70800000000000000
+      internalID: 8895463324998909346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_11
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71766309b9c2d6830800000000000000
+      internalID: 4065955085236463383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_12
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 132
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5962a2214160e3000800000000000000
+      internalID: 17458131829925525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_13
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 102
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ff35643997537e50800000000000000
+      internalID: 6805879777407614967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_14
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 102
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc9ec547ce5fabdd0800000000000000
+      internalID: -2469391049745962545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_15
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 101
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f398bbb196c728d90800000000000000
+      internalID: -7096973271903794881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_16
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 100
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d52defa2837c99960800000000000000
+      internalID: 7609332089472602717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_17
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 100
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff1cb4285732a9670800000000000000
+      internalID: 8546182230493086207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_18
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 100
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd510a74788e4a830800000000000000
+      internalID: 4081642830024414685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_19
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 100
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b3610eff64166c0800000000000000
+      internalID: -4151959316668728491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_20
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 100
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e5d45979301b9fc0800000000000000
+      internalID: -3487175647433533977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_21
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 68
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cb72213d145a60c0800000000000000
+      internalID: -4581757186540930104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_22
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 67
+        width: 26
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618f073a5d9c2ff30800000000000000
+      internalID: 4607967288160745494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_23
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 67
+        width: 27
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f2841c7cdca00990800000000000000
+      internalID: -7421742122932075792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_24
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 67
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08680d75274d130f0800000000000000
+      internalID: -1138895643183380864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_25
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 67
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48842fa19c2e3be30800000000000000
+      internalID: 4518204204551129220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_26
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 67
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8ca8aff40acb3460800000000000000
+      internalID: 7222588550236646539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_27
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 68
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 327317ec8a843d950800000000000000
+      internalID: 6472596979316766499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_28
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 68
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5206d789b1d1a1b0800000000000000
+      internalID: -5647001862967786916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_29
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 68
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f95df8d842fe7d60800000000000000
+      internalID: 7890009991891737079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_30
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 68
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f835f32201aead750800000000000000
+      internalID: 6330629581237605263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_31
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 36
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d25bd2dee76a8fc10800000000000000
+      internalID: 2087601491361510701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_32
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 36
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b040072c6324e1330800000000000000
+      internalID: 3683454348193432587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_33
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 36
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56b616f1d8a5f6ca0800000000000000
+      internalID: -6021494614607697051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_34
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 36
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef5d2611cfd656f60800000000000000
+      internalID: 8026942840248653310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_35
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 4
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28e29adbc65591820800000000000000
+      internalID: 2889434561461694082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_36
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 4
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e7be9b3d956dd5d0800000000000000
+      internalID: -3036158847793317919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_37
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 4
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c7788a617f120eb0800000000000000
+      internalID: -4755203684570728510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_38
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 4
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02a4759c8144fc9c0800000000000000
+      internalID: -3904827478659085792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_39
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 3
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 557ceaa2d22f29180800000000000000
+      internalID: -9109952820413544619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_40
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 3
+        width: 21
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cc4034ecbd3a05a0800000000000000
+      internalID: -6554358426192819006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archor_41
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 3
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c85f3a1b6b1d05df0800000000000000
+      internalID: -193424201382365812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

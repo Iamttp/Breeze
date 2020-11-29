@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: -6007857137893288414
     second: Sprite-0001_0
+  - first:
+      213: 6755720722691680075
+    second: Sprite-0001_0
+  - first:
+      213: 4245052342988409972
+    second: Sprite-0001_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -116,8 +122,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 226539a93cdcf9ca0800000000000000
-      internalID: -6007857137893288414
+      spriteID: b4768c5343421cd50800000000000000
+      internalID: 6755720722691680075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0001_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 45
+        width: 18
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c83cc5d9479ea30800000000000000
+      internalID: 4245052342988409972
       vertices: []
       indices: 
       edges: []

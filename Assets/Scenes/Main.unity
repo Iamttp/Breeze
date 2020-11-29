@@ -594,5 +594,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45656cb27a318014487b96f157509328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordPrefab: {fileID: 6505589383242432592, guid: bd2263cbac292aa488c770cbf691436b,
+  swordPrefab: {fileID: 6505589383242432592, guid: b9f1f371d2ededc49b7cb641bbaaf115,
     type: 3}
+  archorPrefab: {fileID: 6505589383242432592, guid: bd2263cbac292aa488c770cbf691436b,
+    type: 3}
+  enemys: []
+  players: []

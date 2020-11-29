@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Person : MonoBehaviour, IPerson
+public class Archor : MonoBehaviour, IPerson
 {
     Animator anim;
     Rigidbody2D rg;
     BoxCollider2D box;
+    GameObject attackDisShow;
 
     public int speedVal; // 5
     public int maxLifeVal;
     public int maxAttackVal;
     public int minAttackVal;
+    public int maxAttackDis;
+    public int speedArcVal;
 
     private int lifeVal;
 
-    private Vector2 moveVec;
+    public GameObject ArcPrefab;
 
     void Start()
     {
@@ -27,8 +30,9 @@ public class Person : MonoBehaviour, IPerson
             if (child.gameObject.name == "Attack")
             {
                 box = child.GetComponent<BoxCollider2D>();
-                break;
             }
+            if (child.gameObject.name == "AttackDisShow")
+                attackDisShow = child.gameObject;
         }
         lifeVal = maxLifeVal;
     }
@@ -67,13 +71,60 @@ public class Person : MonoBehaviour, IPerson
         anim.SetTrigger("attack");
         box.enabled = true;
         box.isTrigger = true;
+        attackDisShow.SetActive(true);
         StartCoroutine(attackOver());
+
+        GameObject temp = getMinDisP();
+        if (temp == null) return;
+
+        GameObject arc = Instantiate(ArcPrefab, transform.position, Quaternion.identity);
+        arc.GetComponent<ArcFollow>().speed = speedArcVal;
+        arc.GetComponent<ArcFollow>().p = temp.GetComponent<IPerson>();
+        arc.GetComponent<ArcFollow>().target = temp.transform.position;
+        arc.GetComponent<ArcFollow>().attackVal = Random.Range(minAttackVal, maxAttackVal + 1);
     }
 
+    private GameObject getMinDisP()
+    {
+        GameObject res = null;
+        var pos = transform.position;
+        List<GameObject> temp;
+        if (owner)
+        {
+            temp = Manager.instance.enemys;
+        }
+        else
+        {
+            temp = Manager.instance.players;
+        }
+        float min_ = maxAttackDis;
+        foreach (var obj in temp)
+        {
+            var dis = Vector2.Distance(obj.transform.position, pos);
+            if (dis < min_)
+            {
+                min_ = dis;
+                res = obj;
+            }
+        }
+        return res;
+    }
 
     public Image red, black;
+
+    private bool owner;
+    bool IPerson.owner { get { return owner; } set { owner = value; } }
+
+    private bool isDeath;
+    bool IPerson.isDeath { get { return isDeath; } set { isDeath = value; } }
+
+    private Vector2 moveVec;
+    Vector2 IPerson.moveVec { get { return moveVec; } set { moveVec = value; } }
+
     public void hit(int val)
     {
+        if (anim.GetBool("dead")) return; // 死亡动画时不可攻击
+
         anim.SetTrigger("hit");
         lifeVal -= val;
         if (lifeVal <= 0) dead();
@@ -84,18 +135,11 @@ public class Person : MonoBehaviour, IPerson
 
     public void dead()
     {
+        isDeath = true;
+        if (owner) Manager.instance.players.Remove(gameObject);
+        else Manager.instance.enemys.Remove(gameObject);
         anim.SetBool("dead", true);
         StartCoroutine(deadOver());
-    }
-
-    public Vector2 getMove()
-    {
-        return moveVec;
-    }
-    
-    public void setMove(Vector2 vec)
-    {
-        moveVec = vec;
     }
 
     IEnumerator deadOver()
@@ -109,11 +153,12 @@ public class Person : MonoBehaviour, IPerson
         yield return new WaitForSeconds(0.1f); // TODO 攻击持续时间
         box.enabled = false;
         box.isTrigger = false;
+        attackDisShow.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var otherP = collision.gameObject.GetComponent<Person>();
+        var otherP = collision.gameObject.GetComponent<IPerson>();
         if (otherP == null) return;
         otherP.hit(Random.Range(minAttackVal, maxAttackVal + 1));
     }

@@ -25,6 +25,7 @@ public class ComputerControll : MonoBehaviour
 
     private Vector3 lastPos;
     private float timeOfDelay;
+    private int rateGo = 1;
     void followTarget()
     {
         const float smoothDoor = 0.9f;
@@ -36,17 +37,18 @@ public class ComputerControll : MonoBehaviour
         var tfpos = transform.position;
         if (Vector3.Distance(tgpos, tfpos) < followDis)
         {
-            p.setMove(new Vector2(0, 0));
+            rateGo = 1;
+            p.moveVec = new Vector2(0, 0);
             p.move();
             return;
         }
 
-        var tempMove = p.getMove();
+        var tempMove = p.moveVec;
         if (tgpos.x - tfpos.x > smoothVal) tempMove.x = tempMove.x * smoothDoor + 1 * (1 - smoothDoor);
         else if (tgpos.x - tfpos.x < -smoothVal) tempMove.x = tempMove.x * smoothDoor + -1 * (1 - smoothDoor);
         if (tgpos.y - tfpos.y > smoothVal) tempMove.y = tempMove.y * smoothDoor + 1 * (1 - smoothDoor);
         else if (tgpos.y - tfpos.y < -smoothVal) tempMove.y = tempMove.y * smoothDoor + -1 * (1 - smoothDoor);
-        p.setMove(tempMove);
+        p.moveVec = tempMove;
         p.move();
 
         // 被阻挡随机运动解决，离得太远仍然不行
@@ -57,7 +59,9 @@ public class ComputerControll : MonoBehaviour
             {
                 timeOfDelay = 0;
                 var temp = new Vector2(Random.value - 0.5f, Random.value - 0.5f);
-                p.setMove(p.getMove() + temp * 10);
+                p.moveVec += temp * rateGo;
+                rateGo <<= 1; // 慢启动
+                if (rateGo >= 32) rateGo = 1;
                 p.move();
             }
         }

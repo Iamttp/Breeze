@@ -9,6 +9,21 @@ public interface IPerson
     void hit(int val);
     void dead();
 
-    Vector2 getMove();
-    void setMove(Vector2 vec);
+    bool owner
+    {
+        set;
+        get;
+    }
+
+    bool isDeath
+    {
+        set;
+        get;
+    }
+
+    Vector2 moveVec
+    {
+        set;
+        get;
+    }
 }
