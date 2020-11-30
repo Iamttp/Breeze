@@ -9,7 +9,7 @@ public class Archor : MonoBehaviour, IPerson
     Rigidbody2D rg;
     GameObject attackDisShow;
 
-    public int speedVal; // 5
+    public float speedVal; // 5
     public int maxLifeVal;
     public int maxAttackVal;
     public int minAttackVal;
@@ -34,7 +34,7 @@ public class Archor : MonoBehaviour, IPerson
         }
         lifeVal = maxLifeVal;
 
-        if (owner) red.color = new Color(0, 1, 0);
+        if (owner) red.color = new Color(1, 0, 0, 0.6f);
     }
 
     void Update()
@@ -68,7 +68,7 @@ public class Archor : MonoBehaviour, IPerson
     {
         if (anim.GetBool("dead")) return; // 死亡动画时不可攻击
 
-        GameObject temp = getMinDisP();
+        GameObject temp = AI.getMinDisEnemy(transform, owner, maxAttackDis);
         if (temp == null)
         {
             attackDisShow.SetActive(true);
@@ -85,42 +85,18 @@ public class Archor : MonoBehaviour, IPerson
         arc.GetComponent<ArcFollow>().targetNew = temp.transform;
     }
 
-    private GameObject getMinDisP()
-    {
-        GameObject res = null;
-        var pos = transform.position;
-        List<GameObject> temp;
-        if (owner)
-        {
-            temp = Manager.instance.enemys;
-        }
-        else
-        {
-            temp = Manager.instance.players;
-        }
-        float min_ = maxAttackDis;
-        foreach (var obj in temp)
-        {
-            var dis = Vector2.Distance(obj.transform.position, pos);
-            if (dis < min_)
-            {
-                min_ = dis;
-                res = obj;
-            }
-        }
-        return res;
-    }
-
     public Image red, black;
 
     private bool owner;
-    bool IPerson.owner { get { return owner; } set { owner = value; } }
+    bool IPerson.owner { get => owner; set => owner = value; }
 
     private bool isDeath;
-    bool IPerson.isDeath { get { return isDeath; } set { isDeath = value; } }
+    bool IPerson.isDeath { get => isDeath; set => isDeath = value; }
 
     private Vector2 moveVec;
-    Vector2 IPerson.moveVec { get { return moveVec; } set { moveVec = value; } }
+    Vector2 IPerson.moveVec { get => moveVec; set => moveVec = value; }
+
+    float IPerson.speedVal { get => speedVal; set => speedVal = value; }
 
     public void hit(int val)
     {

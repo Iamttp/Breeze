@@ -15,9 +15,9 @@ public class Manager : MonoBehaviour
         instance = this;
     }
 
-    GameObject createPerson(GameObject prefab, Color color, bool isPlayer = false)
+    GameObject createPerson(Vector3 pos, GameObject prefab, Color color, bool isPlayer = false)
     {
-        var temp = Instantiate(prefab);
+        var temp = Instantiate(prefab, pos, Quaternion.identity);
         if (isPlayer) temp.name = "Player";
         if (isPlayer) temp.AddComponent<PlayerControll>();
         else temp.AddComponent<ComputerControll>();
@@ -34,14 +34,16 @@ public class Manager : MonoBehaviour
 
     void Start()
     {
+        const int x = 4;
+        const int y = 2;
         // 创建Player
-        players.Add(createPerson(archorPrefab, Color.blue, true));
+        players.Add(createPerson(new Vector3(-x, -y, 0), archorPrefab, Color.blue, true));
         // 创建Company
-        players.Add(createPerson(swordPrefab, Color.blue / 2));
+        players.Add(createPerson(new Vector3(-x, y, 0), swordPrefab, Color.blue / 2));
         // 创建Enemy
-        enemys.Add(createPerson(swordPrefab, Color.red));
+        enemys.Add(createPerson(new Vector3(x, -y, 0), swordPrefab, Color.red));
         // 创建Enemy2
-        enemys.Add(createPerson(archorPrefab, Color.red));
+        enemys.Add(createPerson(new Vector3(x, y, 0), archorPrefab, Color.red));
 
         foreach (var obj in players)
         {

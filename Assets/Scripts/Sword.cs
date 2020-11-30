@@ -9,7 +9,7 @@ public class Sword : MonoBehaviour, IPerson
     Rigidbody2D rg;
     BoxCollider2D box;
 
-    public int speedVal; // 5
+    public float speedVal; // 5
     public int maxLifeVal;
     public int maxAttackVal;
     public int minAttackVal;
@@ -30,7 +30,7 @@ public class Sword : MonoBehaviour, IPerson
         }
         lifeVal = maxLifeVal;
 
-        if (owner) red.color = new Color(0, 1, 0);
+        if (owner) red.color = new Color(1, 0, 0, 0.6f);
     }
 
     void Update()
@@ -74,13 +74,15 @@ public class Sword : MonoBehaviour, IPerson
     public Image red, black;
 
     private bool owner;
-    bool IPerson.owner { get { return owner; } set { owner = value; } }
+    bool IPerson.owner { get => owner; set => owner = value; }
 
     private bool isDeath;
-    bool IPerson.isDeath { get { return isDeath; } set { isDeath = value; } }
+    bool IPerson.isDeath { get => isDeath; set => isDeath = value; }
 
     private Vector2 moveVec;
-    Vector2 IPerson.moveVec { get { return moveVec; } set { moveVec = value; } }
+    Vector2 IPerson.moveVec { get => moveVec; set => moveVec = value; }
+
+    float IPerson.speedVal { get => speedVal; set => speedVal = value; }
 
     public void hit(int val)
     {

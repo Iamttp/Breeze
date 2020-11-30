@@ -13,6 +13,12 @@ public interface IPerson
     {
         set;
         get;
+    }  
+    
+    float speedVal
+    {
+        set;
+        get;
     }
 
     bool isDeath
