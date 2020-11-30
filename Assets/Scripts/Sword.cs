@@ -29,6 +29,8 @@ public class Sword : MonoBehaviour, IPerson
             }
         }
         lifeVal = maxLifeVal;
+
+        if (owner) red.color = new Color(0, 1, 0);
     }
 
     void Update()
@@ -84,7 +86,7 @@ public class Sword : MonoBehaviour, IPerson
     {
         if (anim.GetBool("dead")) return; // 死亡动画时不可攻击
 
-        anim.SetTrigger("hit"); 
+        anim.SetTrigger("hit");
         GetComponent<SpriteRenderer>().color = Color.red;
         StartCoroutine(hitOver());
         lifeVal -= val;
@@ -115,7 +117,7 @@ public class Sword : MonoBehaviour, IPerson
         box.enabled = false;
         box.isTrigger = false;
     }
-    
+
     IEnumerator hitOver()
     {
         yield return new WaitForSeconds(0.1f);
@@ -126,6 +128,7 @@ public class Sword : MonoBehaviour, IPerson
     {
         var otherP = collision.gameObject.GetComponent<IPerson>();
         if (otherP == null) return;
+        if (otherP.owner == owner) return;
         otherP.hit(Random.Range(minAttackVal, maxAttackVal + 1));
     }
 }

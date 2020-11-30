@@ -33,6 +33,8 @@ public class Archor : MonoBehaviour, IPerson
             }
         }
         lifeVal = maxLifeVal;
+
+        if (owner) red.color = new Color(0, 1, 0);
     }
 
     void Update()
