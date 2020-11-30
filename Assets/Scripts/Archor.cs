@@ -7,7 +7,6 @@ public class Archor : MonoBehaviour, IPerson
 {
     Animator anim;
     Rigidbody2D rg;
-    BoxCollider2D box;
     GameObject attackDisShow;
 
     public int speedVal; // 5
@@ -27,12 +26,11 @@ public class Archor : MonoBehaviour, IPerson
         rg = GetComponent<Rigidbody2D>();
         foreach (Transform child in transform)
         {
-            if (child.gameObject.name == "Attack")
-            {
-                box = child.GetComponent<BoxCollider2D>();
-            }
             if (child.gameObject.name == "AttackDisShow")
+            {
                 attackDisShow = child.gameObject;
+                break;
+            }
         }
         lifeVal = maxLifeVal;
     }
@@ -68,20 +66,21 @@ public class Archor : MonoBehaviour, IPerson
     {
         if (anim.GetBool("dead")) return; // 死亡动画时不可攻击
 
-        anim.SetTrigger("attack");
-        box.enabled = true;
-        box.isTrigger = true;
-        attackDisShow.SetActive(true);
-        StartCoroutine(attackOver());
-
         GameObject temp = getMinDisP();
-        if (temp == null) return;
+        if (temp == null)
+        {
+            attackDisShow.SetActive(true);
+            StartCoroutine(attackOver());
+            return;
+        }
 
+        anim.SetTrigger("attack");
         GameObject arc = Instantiate(ArcPrefab, transform.position, Quaternion.identity);
         arc.GetComponent<ArcFollow>().speed = speedArcVal;
         arc.GetComponent<ArcFollow>().p = temp.GetComponent<IPerson>();
         arc.GetComponent<ArcFollow>().target = temp.transform.position;
         arc.GetComponent<ArcFollow>().attackVal = Random.Range(minAttackVal, maxAttackVal + 1);
+        arc.GetComponent<ArcFollow>().targetNew = temp.transform;
     }
 
     private GameObject getMinDisP()
@@ -126,6 +125,8 @@ public class Archor : MonoBehaviour, IPerson
         if (anim.GetBool("dead")) return; // 死亡动画时不可攻击
 
         anim.SetTrigger("hit");
+        GetComponent<SpriteRenderer>().color = Color.red;
+        StartCoroutine(hitOver());
         lifeVal -= val;
         if (lifeVal <= 0) dead();
 
@@ -150,10 +151,14 @@ public class Archor : MonoBehaviour, IPerson
 
     IEnumerator attackOver()
     {
-        yield return new WaitForSeconds(0.1f); // TODO 攻击持续时间
-        box.enabled = false;
-        box.isTrigger = false;
+        yield return new WaitForSeconds(0.1f); // TODO 攻击范围显示持续时间
         attackDisShow.SetActive(false);
+    }
+
+    IEnumerator hitOver()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

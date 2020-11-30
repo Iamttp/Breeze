@@ -84,7 +84,9 @@ public class Sword : MonoBehaviour, IPerson
     {
         if (anim.GetBool("dead")) return; // 死亡动画时不可攻击
 
-        anim.SetTrigger("hit");
+        anim.SetTrigger("hit"); 
+        GetComponent<SpriteRenderer>().color = Color.red;
+        StartCoroutine(hitOver());
         lifeVal -= val;
         if (lifeVal <= 0) dead();
 
@@ -112,6 +114,12 @@ public class Sword : MonoBehaviour, IPerson
         yield return new WaitForSeconds(0.1f); // TODO 攻击持续时间
         box.enabled = false;
         box.isTrigger = false;
+    }
+    
+    IEnumerator hitOver()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
