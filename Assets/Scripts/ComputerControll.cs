@@ -14,23 +14,32 @@ public class ComputerControll : MonoBehaviour
         p = GetComponent<IPerson>();
         player = GameObject.Find("Player").transform;
         ai = new AI();
-        orgSpeedVal = p.speedVal;
+        orgSpeedVal = p.SpeedVal;
     }
 
     void Update()
     {
-        p.speedVal = orgSpeedVal; // 每次迭代前保证原速度
+        p.SpeedVal = orgSpeedVal; // 每次迭代前保证原速度
 
-        GameObject temp = AI.getMinDisEnemy(transform, p.owner, 4);
+        GameObject temp = AI.getMinDisEnemy(transform, p.Owner, 4);
         nowState = temp == null ? 0 : 1; // 半径为4的范围内存在敌人，进入攻击状态
-        if (p.owner) OwnerAI(temp);
-        else EnemyAI(temp);
+        if (p.Owner)
+        {
+            if (nowState == 0)
+                if (player.GetComponent<IPerson>().State == State.attack ||
+                    player.GetComponent<IPerson>().State == State.hit)
+                    nowState = 2; // TODO player destory
+            OwnerAI(temp);
+        }
+        else
+        {
+            EnemyAI(temp);
+        }
 
         p.move();
     }
 
     int nowState = 0;
-    float attackTime = 0.5f;
     float nowAttackTime = 0;
 
     void OwnerAI(GameObject temp)
@@ -38,11 +47,13 @@ public class ComputerControll : MonoBehaviour
         switch (nowState)
         {
             case 0: // 跟随主角
-                p.moveVec = ai.follow(p.moveVec, player, transform, 3);
+                p.MoveVec = ai.follow(p.MoveVec, player, transform, 3);
                 break;
             case 1: // 攻击敌人
-                p.moveVec = ai.follow(p.moveVec, temp.transform, transform, 0.1f, false);
-                attackRand();
+                attackRand(temp);
+                break;
+            case 2: // 跟上挨揍的主角 TODO
+                p.MoveVec = ai.follow(p.MoveVec, player, transform, 0.1f);
                 break;
         }
     }
@@ -52,25 +63,26 @@ public class ComputerControll : MonoBehaviour
         switch (nowState)
         {
             case 0: // 巡逻
-                p.moveVec = ai.patrol(p.moveVec, transform);
-                p.speedVal = orgSpeedVal / 4 + Random.value;
+                p.MoveVec = ai.patrol(p.MoveVec, transform);
+                p.SpeedVal = orgSpeedVal / 4 + Random.value;
                 break;
             case 1: // 攻击主角或其它
-                p.moveVec = ai.follow(p.moveVec, temp.transform, transform, 0.1f, false);
-                attackRand();
+                attackRand(temp);
                 break;
         }
     }
-    void attackRand()
+    void attackRand(GameObject temp)
     {
-        // TODO 根据类型判断
+        // TODO Sword 攻击死角bug
+        if (p.TypePerson == TypePerson.Sword)
+            p.MoveVec = ai.follow(p.MoveVec, temp.transform, transform, 1.5f, false);
+        else if (p.TypePerson == TypePerson.Anchor)
+            p.MoveVec = ai.follow(p.MoveVec, temp.transform, transform, 3.8f, false);
+
         nowAttackTime += Time.deltaTime;
-        if (nowAttackTime < attackTime) return;
-        if (Random.value > 0.5f)
-        {
-            p.attack();
-            nowAttackTime = 0;
-        }
+        if (nowAttackTime < Manager.attackTime) return;
+        nowAttackTime = 0;
+        if (Random.value > 0.5f) p.attack();
     }
 }
 

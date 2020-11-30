@@ -25,7 +25,7 @@ public class ArcFollow : MonoBehaviour
         nowSpeed += speed * Time.deltaTime;
         if (Vector3.Distance(transform.position, target) < 0.01f)
         {
-            if (p.isDeath)
+            if (p.State == State.dead)
             {
                 Destroy(gameObject);
                 return;

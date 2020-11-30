@@ -10,6 +10,8 @@ public class Manager : MonoBehaviour
     public List<GameObject> players = new List<GameObject>();
     public static Manager instance;
 
+    public static float attackTime = 0.5f;
+
     void Awake()
     {
         instance = this;
@@ -47,11 +49,11 @@ public class Manager : MonoBehaviour
 
         foreach (var obj in players)
         {
-            obj.GetComponent<IPerson>().owner = true;
+            obj.GetComponent<IPerson>().Owner = true;
         }
         foreach (var obj in enemys)
         {
-            obj.GetComponent<IPerson>().owner = false;
+            obj.GetComponent<IPerson>().Owner = false;
         }
     }
 

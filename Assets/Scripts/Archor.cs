@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Archor : MonoBehaviour, IPerson
+public class Archor : BasicPerson
 {
-    Animator anim;
-    Rigidbody2D rg;
     GameObject attackDisShow;
 
-    public float speedVal; // 5
-    public int maxLifeVal;
-    public int maxAttackVal;
-    public int minAttackVal;
     public int maxAttackDis;
     public int speedArcVal;
-
-    private int lifeVal;
 
     public GameObject ArcPrefab;
 
     void Start()
     {
+        TypePerson = TypePerson.Anchor;
+
         anim = GetComponent<Animator>();
         rg = GetComponent<Rigidbody2D>();
+        lifeVal = maxLifeVal;
+
+        if (Owner) red.color = new Color(1, 0, 0, 0.6f);
         foreach (Transform child in transform)
         {
             if (child.gameObject.name == "AttackDisShow")
@@ -32,50 +29,29 @@ public class Archor : MonoBehaviour, IPerson
                 break;
             }
         }
-        lifeVal = maxLifeVal;
-
-        if (owner) red.color = new Color(1, 0, 0, 0.6f);
     }
 
     void Update()
     {
     }
-
+    
     private void FixedUpdate()
     {
-        rg.MovePosition(rg.position + moveVec * speedVal * Time.fixedDeltaTime);
+        rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
     }
 
-    public void move()
+    override public void attack()
     {
-        // 动画翻转
-        if (moveVec.x != 0)
-        {
-            var vec = transform.localScale;
-            vec.x = Mathf.Abs(vec.x) * ((moveVec.x > 0) ? 1 : -1);
-            transform.localScale = vec; // -1 翻转
-        }
-        anim.SetFloat("speed", moveVec.magnitude);
+        if (State == State.dead) return;
 
-        // 更新血条位置
-        Vector2 pos = Camera.main.WorldToScreenPoint(transform.position);
-        pos = new Vector2(pos.x - Screen.width / 2, pos.y - Screen.height / 2 + 50);
-        red.GetComponent<RectTransform>().anchoredPosition = pos;
-        black.GetComponent<RectTransform>().anchoredPosition = pos;
-    }
-
-    public void attack()
-    {
-        if (anim.GetBool("dead")) return; // 死亡动画时不可攻击
-
-        GameObject temp = AI.getMinDisEnemy(transform, owner, maxAttackDis);
+        GameObject temp = AI.getMinDisEnemy(transform, Owner, maxAttackDis);
         if (temp == null)
         {
             attackDisShow.SetActive(true);
             StartCoroutine(attackOver());
             return;
         }
-
+        State = State.attack;
         anim.SetTrigger("attack");
         GameObject arc = Instantiate(ArcPrefab, transform.position, Quaternion.identity);
         arc.GetComponent<ArcFollow>().speed = speedArcVal;
@@ -85,64 +61,9 @@ public class Archor : MonoBehaviour, IPerson
         arc.GetComponent<ArcFollow>().targetNew = temp.transform;
     }
 
-    public Image red, black;
-
-    private bool owner;
-    bool IPerson.owner { get => owner; set => owner = value; }
-
-    private bool isDeath;
-    bool IPerson.isDeath { get => isDeath; set => isDeath = value; }
-
-    private Vector2 moveVec;
-    Vector2 IPerson.moveVec { get => moveVec; set => moveVec = value; }
-
-    float IPerson.speedVal { get => speedVal; set => speedVal = value; }
-
-    public void hit(int val)
-    {
-        if (anim.GetBool("dead")) return; // 死亡动画时不可攻击
-
-        anim.SetTrigger("hit");
-        GetComponent<SpriteRenderer>().color = Color.red;
-        StartCoroutine(hitOver());
-        lifeVal -= val;
-        if (lifeVal <= 0) dead();
-
-        // 更新血条
-        red.fillAmount = (float)(lifeVal) / maxLifeVal;
-    }
-
-    public void dead()
-    {
-        isDeath = true;
-        if (owner) Manager.instance.players.Remove(gameObject);
-        else Manager.instance.enemys.Remove(gameObject);
-        anim.SetBool("dead", true);
-        StartCoroutine(deadOver());
-    }
-
-    IEnumerator deadOver()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(gameObject);
-    }
-
     IEnumerator attackOver()
     {
         yield return new WaitForSeconds(0.1f); // TODO 攻击范围显示持续时间
         attackDisShow.SetActive(false);
-    }
-
-    IEnumerator hitOver()
-    {
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = Color.white;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        var otherP = collision.gameObject.GetComponent<IPerson>();
-        if (otherP == null) return;
-        otherP.hit(Random.Range(minAttackVal, maxAttackVal + 1));
     }
 }

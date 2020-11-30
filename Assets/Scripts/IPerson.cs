@@ -2,6 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TypePerson
+{
+    Sword,
+    Anchor
+}
+public enum State
+{
+    idle,
+    run,
+    dead,
+    attack,
+    hit
+}
+
 public interface IPerson
 {
     void move();
@@ -9,25 +23,31 @@ public interface IPerson
     void hit(int val);
     void dead();
 
-    bool owner
-    {
-        set;
-        get;
-    }  
-    
-    float speedVal
+    TypePerson TypePerson // 按创建时间从0开始编号, 0 Sword 1 Anchor
     {
         set;
         get;
     }
 
-    bool isDeath
+    State State // 当前状态
     {
         set;
         get;
     }
 
-    Vector2 moveVec
+    bool Owner
+    {
+        set;
+        get;
+    }
+
+    float SpeedVal
+    {
+        set;
+        get;
+    }
+
+    Vector2 MoveVec
     {
         set;
         get;
