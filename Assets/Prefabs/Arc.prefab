@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
+  targetNew: {fileID: 0}
   speed: 0
   attackVal: 0
 --- !u!1 &4888082496923750596
@@ -117,7 +118,7 @@ SpriteRenderer:
   m_SortingLayerID: -496117599
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4245052342988409972, guid: 4ec9aa123ce280b41b6ccdae799386d7,
+  m_Sprite: {fileID: -3124994798823509436, guid: df8f83a887714a5449c2d4d1ea2693ec,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

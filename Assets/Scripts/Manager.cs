@@ -6,11 +6,19 @@ public class Manager : MonoBehaviour
 {
     public GameObject swordPrefab;
     public GameObject archorPrefab;
+    [HideInInspector]
     public List<GameObject> enemys = new List<GameObject>();
+    [HideInInspector]
     public List<GameObject> players = new List<GameObject>();
     public static Manager instance;
 
     public static float attackTime = 0.5f;
+    public enum SceneName
+    {
+        Underground,
+        Main
+    }
+    public SceneName sceneName;
 
     void Awake()
     {
