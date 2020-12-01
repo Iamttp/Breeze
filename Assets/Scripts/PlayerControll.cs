@@ -48,7 +48,7 @@ public class PlayerControll : MonoBehaviour
         // 攻击
         nowAttackTime += Time.deltaTime;
         if (nowAttackTime < Manager.attackTime) return;
-        if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             nowAttackTime = 0;
             p.attack();

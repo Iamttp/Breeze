@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
+    public List<GameObject> prefabs;
+
     public GameObject swordPrefab;
     public GameObject archorPrefab;
     [HideInInspector]

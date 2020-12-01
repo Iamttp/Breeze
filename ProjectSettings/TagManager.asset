@@ -53,3 +53,6 @@ TagManager:
   - name: user
     uniqueID: 2774497027
     locked: 0
+  - name: drag
+    uniqueID: 911525941
+    locked: 0
