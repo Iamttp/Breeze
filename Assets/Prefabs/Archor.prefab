@@ -531,7 +531,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.14278844}
+  m_Offset: {x: 0.0009529367, y: -0.14278844}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -542,7 +542,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.33942312}
+  m_Size: {x: 0.3075111, y: 0.33942312}
   m_EdgeRadius: 0
 --- !u!50 &6505589383242432599
 Rigidbody2D:
@@ -577,13 +577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb8efb112425e84198eb85d6088c45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVal: 6
   maxLifeVal: 10
   maxAttackVal: 1
   minAttackVal: 1
+  red: {fileID: 6505589382205122272}
+  black: {fileID: 6505589381355426435}
   maxAttackDis: 4
   speedArcVal: 30
   ArcPrefab: {fileID: 311749336387203475, guid: 736e7f49099c3f54180afac73ebff4dd,
     type: 3}
-  red: {fileID: 6505589382205122272}
-  black: {fileID: 6505589381355426435}
