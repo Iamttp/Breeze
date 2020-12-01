@@ -31,6 +31,12 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
     TypePerson typePerson;
     public TypePerson TypePerson { get => typePerson; set => typePerson = value; }
 
+    protected void FixedUpdate()
+    {
+        if (State == State.run)
+            rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
+    }
+
     public void move()
     {
         if (State == State.dead) return;

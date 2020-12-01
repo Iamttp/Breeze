@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Sword : BasicPerson
 {
     BoxCollider2D box;
-
+    
     void Start()
     {
         TypePerson = TypePerson.Sword;
@@ -29,11 +29,6 @@ public class Sword : BasicPerson
 
     void Update()
     {
-    }
-    
-    private void FixedUpdate()
-    {
-        rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
     }
 
     override public void attack()

@@ -12,7 +12,7 @@ public class Archor : BasicPerson
 
     public GameObject ArcPrefab;
 
-    void Start()
+ void Start()
     {
         TypePerson = TypePerson.Anchor;
 
@@ -33,11 +33,6 @@ public class Archor : BasicPerson
 
     void Update()
     {
-    }
-    
-    private void FixedUpdate()
-    {
-        rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
     }
 
     override public void attack()
