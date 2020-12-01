@@ -29,7 +29,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnEndDrag(PointerEventData eventData)
     {
         GetComponent<Image>().color = Color.white;
-        createCarrot(Camera.main.ScreenToWorldPoint(rectTransform.position));
+        createPlant(Camera.main.ScreenToWorldPoint(rectTransform.position), name);
         rectTransform.position = orgPos;
     }
 
@@ -41,22 +41,14 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         return Camera.main.WorldToScreenPoint(wpos);
     }
 
-    void createCarrot(Vector2 worldPos)
+    void createPlant(Vector2 worldPos, string typeName)
     {
-        if (Manager.instance.plants.ContainsKey(worldPos)) return;
-        var creator = Instantiate(Manager.instance.plant, worldPos, Quaternion.identity);
-        Manager.instance.plants[worldPos] = creator;
-
+        if (PackageManager.instance.plants.ContainsKey(worldPos)) return;
+        var creator = Instantiate(PackageManager.instance.plant, worldPos, Quaternion.identity);
+        PackageManager.instance.plants[worldPos] = creator;
         creator.GetComponent<SpriteRenderer>().sprite = GetComponent<Image>().sprite;
-        // TODO add Script... set properties
-    }
-
-    void createPumpkin(Vector2 worldPos)
-    {
-        if (Manager.instance.plants.ContainsKey(worldPos)) return;
-        var creator = Instantiate(Manager.instance.plant, worldPos, Quaternion.identity);
-        Manager.instance.plants[worldPos] = creator;
         
-        creator.GetComponent<SpriteRenderer>().sprite = GetComponent<Image>().sprite;
+        creator.GetComponent<Plant>().typeName = typeName;
+        PackageManager.instance.objNum[typeName]--;
     }
 }

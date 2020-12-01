@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    public GameObject plant;
-    public Dictionary<Vector2, GameObject> plants = new Dictionary<Vector2, GameObject>(); // pos -> plant
-
     public GameObject swordPrefab;
     public GameObject archorPrefab;
     [HideInInspector]

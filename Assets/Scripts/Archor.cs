@@ -20,7 +20,8 @@ public class Archor : BasicPerson
         rg = GetComponent<Rigidbody2D>();
         lifeVal = maxLifeVal;
 
-        if (Owner) red.color = new Color(1, 0, 0, 0.6f);
+        if (!Owner) red.color = Color.red;
+        else red.color = Color.blue;
         foreach (Transform child in transform)
         {
             if (child.gameObject.name == "AttackDisShow")
