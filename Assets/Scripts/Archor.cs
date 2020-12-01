@@ -12,7 +12,7 @@ public class Archor : BasicPerson
 
     public GameObject ArcPrefab;
 
- void Start()
+    void Start()
     {
         TypePerson = TypePerson.Anchor;
 
@@ -50,10 +50,9 @@ public class Archor : BasicPerson
         anim.SetTrigger("attack");
         GameObject arc = Instantiate(ArcPrefab, transform.position, Quaternion.identity);
         arc.GetComponent<ArcFollow>().speed = speedArcVal;
-        arc.GetComponent<ArcFollow>().p = temp.GetComponent<IPerson>();
+        arc.GetComponent<ArcFollow>().Owner = Owner;
         arc.GetComponent<ArcFollow>().target = temp.transform.position;
         arc.GetComponent<ArcFollow>().attackVal = Random.Range(minAttackVal, maxAttackVal + 1);
-        arc.GetComponent<ArcFollow>().targetNew = temp.transform;
     }
 
     IEnumerator attackOver()

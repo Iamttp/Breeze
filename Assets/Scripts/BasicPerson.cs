@@ -34,7 +34,10 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
     protected void FixedUpdate()
     {
         if (State == State.run)
+        {
             rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
+            GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000); // 重叠bug解决
+        }
     }
 
     public void move()

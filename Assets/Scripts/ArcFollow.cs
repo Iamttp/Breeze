@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ArcFollow : MonoBehaviour
 {
-    public IPerson p;
+    public bool Owner;
     public Vector3 target;
-    public Transform targetNew;
     public float speed;
     public int attackVal;
 
@@ -25,18 +24,16 @@ public class ArcFollow : MonoBehaviour
         nowSpeed += speed * Time.deltaTime;
         if (Vector3.Distance(transform.position, target) < 0.01f)
         {
-            if (p.State == State.dead)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            if (Vector3.Distance(transform.position, targetNew.position) > 0.1f)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            p.hit(attackVal);
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var otherP = collision.gameObject.GetComponent<IPerson>();
+        if (otherP == null) return;
+        if (otherP.Owner == Owner) return;
+        otherP.hit(attackVal);
+        Destroy(gameObject);
     }
 }

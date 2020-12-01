@@ -583,6 +583,6 @@ MonoBehaviour:
   red: {fileID: 6505589382205122272}
   black: {fileID: 6505589381355426435}
   maxAttackDis: 4
-  speedArcVal: 30
+  speedArcVal: 50
   ArcPrefab: {fileID: 311749336387203475, guid: 736e7f49099c3f54180afac73ebff4dd,
     type: 3}
