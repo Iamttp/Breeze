@@ -47,14 +47,17 @@ TagManager:
   - name: grass
     uniqueID: 332916293
     locked: 0
+  - name: wall
+    uniqueID: 2488788663
+    locked: 0
+  - name: stone
+    uniqueID: 3016932611
+    locked: 0
   - name: tree
     uniqueID: 189808907
     locked: 0
   - name: MapObj
     uniqueID: 2019492257
-    locked: 0
-  - name: wall
-    uniqueID: 2488788663
     locked: 0
   - name: door
     uniqueID: 3798849697

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO Tree
+// TODO Tree Stone and let them anmi when F press
 public class MapObj : MonoBehaviour
 {
     public GameObject showF;
@@ -14,10 +14,12 @@ public class MapObj : MonoBehaviour
     void Start()
     {
         init();
+        GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000); // 重叠bug解决
     }
 
     void Update()
     {
+        if (obj == null) return;
         if (obj.upMapName != null && obj.upMapName != "")
         {
             text.enabled = true;
@@ -55,6 +57,7 @@ public class MapObj : MonoBehaviour
 
     void init()
     {
+        if (!MapManager.instance.objTable.ContainsKey(typeName)) return;
         obj = MapManager.instance.objTable[typeName];
         obj.plantTime = System.DateTime.Now;
         name = typeName;
