@@ -923,6 +923,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955273200}
   m_CullTransparentMesh: 0
+--- !u!1 &966427284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966427285}
+  - component: {fileID: 966427286}
+  m_Layer: 0
+  m_Name: Clude
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966427285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966427284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &966427286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966427284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf287da7932d2848bd28eb5b5eccae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabClude: {fileID: 7568821797789798281, guid: 4778670645257984cab035f4f00c753d,
+    type: 3}
+  cludeSprites:
+  - {fileID: 21300000, guid: 082b734f629ed6642b8ac720c7ed3645, type: 3}
+  - {fileID: 21300000, guid: fc9322afad9775245900bf47543e7b3f, type: 3}
+  dirSpeed: {x: 0, y: 1}
+  addTime: 5
+  probably: 0.95
 --- !u!1 &1063906236
 GameObject:
   m_ObjectHideFlags: 0
