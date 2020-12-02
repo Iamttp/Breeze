@@ -455,6 +455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76bf31541d72c814399a4fddc1f5023f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -1160318257330121952, guid: df8f83a887714a5449c2d4d1ea2693ec, type: 3}
+  - {fileID: 3623608801754259478, guid: df8f83a887714a5449c2d4d1ea2693ec, type: 3}
   plant: {fileID: 2893125471055869065, guid: 397e93cc77dacab42b0f14238367f8e9, type: 3}
   downCells:
   - {fileID: 1759737325}

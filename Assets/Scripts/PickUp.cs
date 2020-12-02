@@ -8,7 +8,7 @@ public class PickUp : MonoBehaviour
     public string typeName;
     void Start()
     {
-
+        GetComponent<SpriteRenderer>().sprite = PackageManager.instance.objTable[typeName].sprite;
     }
 
     void Update()

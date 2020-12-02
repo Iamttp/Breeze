@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO 人物重叠bug
 public class Sword : BasicPerson
 {
     BoxCollider2D box;

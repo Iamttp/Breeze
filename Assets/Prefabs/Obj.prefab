@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showF: {fileID: 4961121477149064172}
+  typeName: 
 --- !u!61 &-527153459990814252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2918775314123817659
 Transform:
   m_ObjectHideFlags: 0
