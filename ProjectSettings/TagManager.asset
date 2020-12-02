@@ -44,6 +44,15 @@ TagManager:
   - name: ground
     uniqueID: 1547034027
     locked: 0
+  - name: grass
+    uniqueID: 332916293
+    locked: 0
+  - name: tree
+    uniqueID: 189808907
+    locked: 0
+  - name: MapObj
+    uniqueID: 2019492257
+    locked: 0
   - name: wall
     uniqueID: 2488788663
     locked: 0
@@ -55,4 +64,7 @@ TagManager:
     locked: 0
   - name: drag
     uniqueID: 911525941
+    locked: 0
+  - name: help
+    uniqueID: 2318422451
     locked: 0
