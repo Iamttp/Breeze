@@ -11,10 +11,18 @@ public class CludeCreator : MonoBehaviour
     public float addTime;
     public float probably;
     private LinkedList<GameObject> cludes = new LinkedList<GameObject>();
+    const int size = 20;
 
     void Start()
     {
         StartCoroutine(Creator());
+        // 先随机在场景中生成云
+        int numStart = 10;
+        while (numStart-- > 0)
+        {
+            cludes.AddLast(Instantiate(prefabClude, new Vector3(Random.Range(-size, size), Random.Range(-size, size), 0)
+                , Quaternion.identity, transform));
+        }
     }
 
     void Update()
@@ -23,7 +31,7 @@ public class CludeCreator : MonoBehaviour
         while (obj != null)
         {
             obj.Value.transform.position += (Vector3)((dirSpeed + Random.insideUnitCircle) * Time.deltaTime);
-            if (obj.Value.transform.position.y > 20) // TODO 云消失位置
+            if (obj.Value.transform.position.y > size) // TODO 云消失位置
             {
                 Destroy(obj.Value);
 
@@ -44,10 +52,10 @@ public class CludeCreator : MonoBehaviour
 
         foreach (var obj in cludes)
             obj.GetComponent<SpriteRenderer>().sprite = cludeSprites[Random.Range(0, cludeSprites.Count)];
-        for (int i = -20; i <= 20; i++)
+        for (int i = -size; i <= size; i++)
         {
             if (Random.value > probably)
-                cludes.AddLast(Instantiate(prefabClude, new Vector3(i, -20, 0) + (Vector3)Random.insideUnitCircle, Quaternion.identity));
+                cludes.AddLast(Instantiate(prefabClude, new Vector3(i, -size, 0) + (Vector3)Random.insideUnitCircle, Quaternion.identity, transform));
         }
         StartCoroutine(Creator());
     }
