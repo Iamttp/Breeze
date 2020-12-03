@@ -13,6 +13,9 @@ public class Manager : MonoBehaviour
     public static Manager instance;
 
     public static float attackTime = 0.5f;
+    public static float tabTime = 0.5f;
+    public const int size = 20;  // TODO enemy 生成位置
+
     public enum SceneName
     {
         Underground,
@@ -25,12 +28,48 @@ public class Manager : MonoBehaviour
         instance = this;
     }
 
-    GameObject createPerson(Vector3 pos, GameObject prefab, Color color, bool isPlayer = false)
+    void Start()
+    {
+        const int x = 4;
+        const int y = 2;
+        // 创建Player
+        createPerson(new Vector3(-x, -y, 0), swordPrefab, Color.blue, true, true);
+        // 创建Company
+        createPerson(new Vector3(-x, y, 0), archorPrefab, Color.blue, true);
+        // 创建Enemy
+        createPerson(new Vector3(x, -y, 0), archorPrefab, Color.red, false);
+        // 创建Enemy2
+        createPerson(new Vector3(x, y, 0), swordPrefab, Color.red, false);
+
+        StartCoroutine(createEnemy());
+    }
+
+    IEnumerator createEnemy()
+    {
+        yield return new WaitForSeconds(10);
+
+        if (enemys.Count >= 10) StartCoroutine(createEnemy());
+        else
+        {
+            var x = Random.Range(-size, size);
+            var y = Random.Range(-size, size);
+            // 创建Enemy
+            createPerson(new Vector3(x, -y, 0), archorPrefab, Color.red, false);
+            // 创建Enemy2
+            createPerson(new Vector3(x, y, 0), swordPrefab, Color.red, false);
+            StartCoroutine(createEnemy());
+        }
+    }
+
+    void Update()
+    {
+
+    }
+
+    GameObject createPerson(Vector3 pos, GameObject prefab, Color color, bool owner, bool isPlayer = false)
     {
         var temp = Instantiate(prefab, pos, Quaternion.identity);
         if (isPlayer) temp.name = "Player";
-        if (isPlayer) temp.AddComponent<PlayerControll>();
-        else temp.AddComponent<ComputerControll>();
         foreach (Transform child in temp.transform)
         {
             if (child.gameObject.name == "Circle")
@@ -39,34 +78,58 @@ public class Manager : MonoBehaviour
                 break;
             }
         }
+
+        if (owner) players.Add(temp);
+        else enemys.Add(temp);
+
+        temp.GetComponent<IPerson>().Owner = owner;
+        if (owner)
+        {
+            temp.AddComponent<ComputerControll>().enabled = !isPlayer;
+            temp.AddComponent<PlayerControll>().enabled = isPlayer;
+        }
+        else
+        {
+            temp.AddComponent<ComputerControll>();
+        }
         return temp;
     }
 
-    void Start()
+    public void playerCheck()
     {
-        const int x = 4;
-        const int y = 2;
-        // 创建Player
-        players.Add(createPerson(new Vector3(-x, -y, 0), archorPrefab, Color.blue, true));
-        // 创建Company
-        players.Add(createPerson(new Vector3(-x, y, 0), swordPrefab, Color.blue / 2));
-        // 创建Enemy
-        enemys.Add(createPerson(new Vector3(x, -y, 0), swordPrefab, Color.red));
-        // 创建Enemy2
-        enemys.Add(createPerson(new Vector3(x, y, 0), archorPrefab, Color.red));
+        if (players.Count == 0)
+        {
+            Debug.Log("Game Over");
+            return;
+        }
 
-        foreach (var obj in players)
+        for (int i = 0; i < players.Count; i++)
         {
-            obj.GetComponent<IPerson>().Owner = true;
+            if (players[i].name == "Player") return;
         }
-        foreach (var obj in enemys)
-        {
-            obj.GetComponent<IPerson>().Owner = false;
-        }
+        setPlayer(-1, 0);
     }
 
-    void Update()
+    public static void setPlayer(int from, int to)
     {
+        var players = instance.players;
+        players[to].GetComponent<PlayerControll>().enabled = true;
+        players[to].GetComponent<ComputerControll>().enabled = false;
+        if (from == -1)
+        {
+            players[to].name = "Player";
+        }
+        else
+        {
+            players[from].GetComponent<PlayerControll>().enabled = false;
+            players[from].GetComponent<ComputerControll>().enabled = true;
 
+            var temp = players[to].name;
+            players[to].name = players[from].name;
+            players[from].name = temp;
+        }
+        // 摄像机锁定
+        if (instance.sceneName == Manager.SceneName.Main)
+            CameraFollow.instance.target = players[to].transform.position;
     }
 }

@@ -12,13 +12,16 @@ public class ComputerControll : MonoBehaviour
     void Start()
     {
         p = GetComponent<IPerson>();
-        player = GameObject.Find("Player").transform;
         ai = new AI();
         orgSpeedVal = p.SpeedVal;
     }
 
     void Update()
     {
+        var playerObj = GameObject.Find("Player");
+        if (playerObj == null) return;
+        player = playerObj.transform;
+
         p.SpeedVal = orgSpeedVal; // 每次迭代前保证原速度
 
         GameObject temp = AI.getMinDisEnemy(transform, p.Owner, 4);
@@ -28,7 +31,7 @@ public class ComputerControll : MonoBehaviour
             if (nowState == 0)
                 if (player.GetComponent<IPerson>().State == State.attack ||
                     player.GetComponent<IPerson>().State == State.hit)
-                    nowState = 2; // TODO player destory
+                    nowState = 2;
             OwnerAI(temp);
         }
         else

@@ -21,7 +21,6 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
-    float nowAttackTime = 0;
 
     void Update()
     {
@@ -49,6 +48,18 @@ public class PlayerControll : MonoBehaviour
         // Top摄像机
         tpCam.position = new Vector3(transform.position.x, transform.position.y, tpCam.position.z);
 
+        attack();
+        tab();
+
+        if (Input.GetKey(KeyCode.LeftShift)) // TODO 体力条
+        {
+            p.SpeedVal *= 2;
+        }
+    }
+
+    float nowAttackTime = 0;
+    void attack()
+    {
         // 攻击
         nowAttackTime += Time.deltaTime;
         if (nowAttackTime < Manager.attackTime) return;
@@ -57,10 +68,22 @@ public class PlayerControll : MonoBehaviour
             nowAttackTime = 0;
             p.attack();
         }
+    }
 
-        if (Input.GetKey(KeyCode.LeftShift)) // TODO 体力条
+    float nowTabTime = 0;
+    void tab()
+    {
+        // 人物切换
+        nowTabTime += Time.deltaTime;
+        if (nowTabTime < Manager.tabTime) return;
+        if (Input.GetKey(KeyCode.Tab))
         {
-            p.SpeedVal *= 2;
+            nowTabTime = 0;
+
+            var players = Manager.instance.players;
+            if (players.Count <= 1) return;
+            int num = players.FindIndex(a => a == gameObject);
+            Manager.setPlayer(num, (num + 1) % players.Count);
         }
     }
 }

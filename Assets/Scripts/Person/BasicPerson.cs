@@ -90,6 +90,7 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
             MsgManager.instance.AddMsg("---> Kill " + typePerson.ToString() + " <---", Color.red);
         else
             MsgManager.instance.AddMsg("---> Kill " + typePerson.ToString() + " <---", Color.green);
+        Manager.instance.playerCheck();
     }
 
     IEnumerator deadOver()
