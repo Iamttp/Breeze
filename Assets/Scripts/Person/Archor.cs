@@ -58,7 +58,7 @@ public class Archor : BasicPerson
 
     IEnumerator attackOver()
     {
-        yield return new WaitForSeconds(0.1f); // TODO 攻击范围显示持续时间
+        yield return new WaitForSeconds(0.1f); // 攻击范围显示持续时间
         attackDisShow.SetActive(false);
     }
 }

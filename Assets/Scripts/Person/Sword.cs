@@ -44,7 +44,7 @@ public class Sword : BasicPerson
 
     IEnumerator attackOver()
     {
-        yield return new WaitForSeconds(0.1f); // TODO 攻击持续时间
+        yield return new WaitForSeconds(0.1f); // 攻击持续时间
         box.enabled = false;
         box.isTrigger = false;
     }

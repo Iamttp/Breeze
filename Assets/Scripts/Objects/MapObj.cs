@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO Tree Stone and let them anmi when F press
 public class MapObj : MonoBehaviour
 {
     [HideInInspector]
@@ -28,7 +27,7 @@ public class MapObj : MonoBehaviour
             if (MapManager.instance.plants.ContainsKey(transform.position))
             {
                 // Prefab brush 有bug 会重复出现，小心画，出现error查看问题
-                Debug.Log("map error ! " + transform.position + ":" + MapManager.instance.plants[transform.position]);
+                // Debug.Log("map error ! " + transform.position + ":" + MapManager.instance.plants[transform.position]);
 
                 // Destroy 重复出现的，最新的直接删除
                 DestroyImmediate(transform.gameObject);
@@ -47,7 +46,7 @@ public class MapObj : MonoBehaviour
         if (obj.packageName != null && obj.packageName != "") showFFunc();
     }
 
-    // TODO 无采摘obj，关闭Box Trigger提高性能
+    // 无采摘obj，关闭Box Trigger提高性能 (暂无不可采摘)
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var otherP = collision.gameObject;

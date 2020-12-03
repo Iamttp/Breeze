@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO 富文本
 public class MsgManager : MonoBehaviour
 {
     public static MsgManager instance;
@@ -40,7 +39,7 @@ public class MsgManager : MonoBehaviour
             if (rt[i].anchoredPosition == orgPos[i])
                 break;
         }
-        if (i >= orgPos.Count) return; // TODO 超过容量等待而不是return
+        if (i >= orgPos.Count) return; // TODO 超过容量等待而不是return 富文本
         texts[i].text = msg;
         texts[i].color = color;
         StartCoroutine(moveText(texts[i], i));

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 /// <summary>
 /// 背包物品
+/// TODO 背包界面
 /// </summary>
 [System.Serializable]
 public class PackageObject
