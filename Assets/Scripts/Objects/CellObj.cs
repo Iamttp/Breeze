@@ -8,10 +8,13 @@ public class CellObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 {
     private RectTransform rectTransform;
     private Vector2 orgPos;
+    private Dictionary<string, PackageObject> objTable;
+
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         orgPos = rectTransform.position;
+        objTable = PackageManager.instance.objTable;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -44,29 +47,29 @@ public class CellObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     void createMapObj(Vector2 worldPos)
     {
         if (MapManager.instance.plants.ContainsKey(worldPos)) return;
-        var mapName = PackageManager.instance.objTable[name].mapName;
+        var mapName = objTable[name].mapName;
         if (mapName == null || mapName == "") return;
 
         var creator = Instantiate(MapManager.instance.mapObj, worldPos, Quaternion.identity);
         MapManager.instance.plants[worldPos] = creator;
         creator.GetComponent<MapObj>().typeName = mapName;
-        PackageManager.instance.objTable[name].num--;
+        creator.GetComponent<MapObj>().isDrag = true;
+        objTable[name].num--;
     }
 
     void Update()
     {
-        if (!PackageManager.instance.objTable.ContainsKey(name))
+        if (!objTable.ContainsKey(name) || objTable[name].num == 0)
         {
-            GetComponent<Image>().color = new Color(0, 0, 0, 0); // 透明
+            GetComponent<Image>().color = Color.clear; // 透明
             GetComponentInChildren<Text>().enabled = false;
             return;
         }
 
-        GetComponent<Image>().sprite = PackageManager.instance.objTable[name].sprite;
-
-        var num = PackageManager.instance.objTable[name].num;
-        gameObject.SetActive(num > 0);
+        GetComponent<Image>().color = Color.white; // 透明
+        if (objTable[name].sprite != null)
+            GetComponent<Image>().sprite = objTable[name].sprite;
         GetComponentInChildren<Text>().enabled = true;
-        GetComponentInChildren<Text>().text = num.ToString();
+        GetComponentInChildren<Text>().text = objTable[name].num.ToString();
     }
 }

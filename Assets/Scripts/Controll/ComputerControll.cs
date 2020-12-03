@@ -75,7 +75,7 @@ public class ComputerControll : MonoBehaviour
     {
         // TODO Sword 攻击死角bug
         if (p.TypePerson == TypePerson.Sword)
-            p.MoveVec = ai.follow(p.MoveVec, temp.transform, transform, 1.5f, false);
+            p.MoveVec = ai.follow(p.MoveVec, temp.transform, transform, 1.2f, false);
         else if (p.TypePerson == TypePerson.Anchor)
             p.MoveVec = ai.follow(p.MoveVec, temp.transform, transform, 3.8f, false);
 

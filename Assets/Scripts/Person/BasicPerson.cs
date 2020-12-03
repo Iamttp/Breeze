@@ -86,6 +86,10 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
         State = State.dead;
         anim.SetBool("dead", true);
         StartCoroutine(deadOver());
+        if (owner)
+            MsgManager.instance.AddMsg("---> Kill " + typePerson.ToString() + " <---", Color.red);
+        else
+            MsgManager.instance.AddMsg("---> Kill " + typePerson.ToString() + " <---", Color.green);
     }
 
     IEnumerator deadOver()

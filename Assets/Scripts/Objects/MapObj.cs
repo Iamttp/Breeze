@@ -18,8 +18,25 @@ public class MapObj : MonoBehaviour
     public string typeName;
     private MapObject obj;
 
+    [HideInInspector]
+    public bool isDrag = false;
+
     void Start()
     {
+        if (!isDrag) // TODO 更好的写法，因为MapManager.instance.plants已经在CellObj中写了
+        {
+            if (MapManager.instance.plants.ContainsKey(transform.position))
+            {
+                // Prefab brush 有bug 会重复出现，小心画，出现error查看问题
+                Debug.Log("map error ! " + transform.position + ":" + MapManager.instance.plants[transform.position]);
+
+                // Destroy 重复出现的，最新的直接删除
+                DestroyImmediate(transform.gameObject);
+                return;
+            }
+            else
+                MapManager.instance.plants[transform.position] = gameObject;
+        }
         init();
     }
 
@@ -76,7 +93,7 @@ public class MapObj : MonoBehaviour
         yield return new WaitForSeconds(obj.deadTime);
         Destroy(gameObject);
         PackageManager.instance.objTable[obj.packageName].num += obj.packageNum;
-        MsgManager.instance.AddMsg("---> Get " + obj.packageName + " x" + obj.packageNum + " <---");
+        MsgManager.instance.AddMsg("---> Get " + obj.packageName + " x" + obj.packageNum + " <---", new Color(0, 0.6f, 0, 1));
     }
 
     void showUpFunc()

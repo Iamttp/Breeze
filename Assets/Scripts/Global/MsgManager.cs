@@ -32,7 +32,7 @@ public class MsgManager : MonoBehaviour
     {
     }
 
-    public void AddMsg(string msg)
+    public void AddMsg(string msg, Color color)
     {
         int i;
         for (i = 0; i < orgPos.Count; i++)
@@ -42,6 +42,7 @@ public class MsgManager : MonoBehaviour
         }
         if (i >= orgPos.Count) return; // TODO 超过容量等待而不是return
         texts[i].text = msg;
+        texts[i].color = color;
         StartCoroutine(moveText(texts[i], i));
     }
 

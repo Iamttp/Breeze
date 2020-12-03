@@ -36,18 +36,22 @@ public class PackageManager : MonoBehaviour
         instance = this;
     }
 
-    void Start()
+    public void updateDownCell()
     {
-        foreach (var obj in pObjs) objTable[obj.typeName] = obj;
-
         int cellIndex = 0;
         foreach (var obj in pObjs)
         {
-            if (obj.num == 0) continue;
+            //if (obj.num == 0) continue;
             downCells[cellIndex++].name = obj.typeName;
             objToCell[obj.typeName] = cellIndex - 1;
             if (cellIndex >= downCells.Count) break;
         }
+    }
+
+    void Start()
+    {
+        foreach (var obj in pObjs) objTable[obj.typeName] = obj;
+        updateDownCell();
     }
 
     void Update()
