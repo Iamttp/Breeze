@@ -18,8 +18,8 @@ public class MapObject
     //[Header("成长用时")]
     public int upSeconds;
 
-    [HideInInspector]
-    public System.DateTime plantTime;
+    //[Header("采摘消失用时")]
+    public float deadTime;
 }
 
 public class MapManager : MonoBehaviour
