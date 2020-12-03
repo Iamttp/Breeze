@@ -11,7 +11,7 @@ public class CludeCreator : MonoBehaviour
     public float addTime;
     public float probably;
     private LinkedList<GameObject> cludes = new LinkedList<GameObject>();
-    const int size = 20;
+    const int size = 30;  // TODO 云消失位置
 
     void Start()
     {
@@ -31,7 +31,7 @@ public class CludeCreator : MonoBehaviour
         while (obj != null)
         {
             obj.Value.transform.position += (Vector3)((dirSpeed + Random.insideUnitCircle) * Time.deltaTime);
-            if (obj.Value.transform.position.y > size) // TODO 云消失位置
+            if (obj.Value.transform.position.y > size)
             {
                 Destroy(obj.Value);
 

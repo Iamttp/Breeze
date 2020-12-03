@@ -76,6 +76,7 @@ public class MapObj : MonoBehaviour
         yield return new WaitForSeconds(obj.deadTime);
         Destroy(gameObject);
         PackageManager.instance.objTable[obj.packageName].num += obj.packageNum;
+        MsgManager.instance.AddMsg("---> Get " + obj.packageName + " x" + obj.packageNum + " <---");
     }
 
     void showUpFunc()

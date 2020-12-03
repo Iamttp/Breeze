@@ -22,7 +22,7 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
     Vector2 moveVec;
     public Vector2 MoveVec { get => moveVec; set => moveVec = value; }
 
-    float speedVal = 5;
+    float speedVal = 3;
     public float SpeedVal { get => speedVal; set => speedVal = value; }
 
     State state;

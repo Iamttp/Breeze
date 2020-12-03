@@ -6,11 +6,13 @@ public class PlayerControll : MonoBehaviour
 {
     IPerson p;
     Transform tpCam;
+    float orgSpeedVal;
 
     void Start()
     {
         p = GetComponent<IPerson>();
         tpCam = GameObject.Find("TopCamera").transform;
+        orgSpeedVal = p.SpeedVal;
 
         if (Manager.instance.sceneName == Manager.SceneName.Main)
         {
@@ -23,6 +25,8 @@ public class PlayerControll : MonoBehaviour
 
     void Update()
     {
+        p.SpeedVal = orgSpeedVal; // 每次迭代前保证原速度
+
         p.MoveVec = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (Manager.instance.sceneName == Manager.SceneName.Underground)
@@ -52,6 +56,11 @@ public class PlayerControll : MonoBehaviour
         {
             nowAttackTime = 0;
             p.attack();
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift)) // TODO 体力条
+        {
+            p.SpeedVal *= 2;
         }
     }
 }
