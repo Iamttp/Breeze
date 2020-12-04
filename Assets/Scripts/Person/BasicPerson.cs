@@ -43,7 +43,7 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
     public void move()
     {
         if (State == State.dead) return;
-
+        
         // 动画翻转
         if (moveVec.x != 0)
         {
@@ -103,5 +103,23 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
     {
         yield return new WaitForSeconds(0.1f);
         GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    // 仅在遇到墙时启用刚体
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        var other = collision.gameObject;
+        if (other.tag == "wall")
+        {
+            gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+            StartCoroutine(wallOver());
+        }
+    }
+
+    // 1s后继续isTrigger
+    IEnumerator wallOver()
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 }

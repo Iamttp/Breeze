@@ -53,7 +53,7 @@ public class PlayerControll : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift)) // TODO 体力条
         {
-            p.SpeedVal *= 2;
+            p.SpeedVal *= 1.5f;
         }
     }
 
