@@ -20,6 +20,8 @@ public class MapObject
 
     //[Header("采摘消失用时")]
     public float deadTime;
+
+    public bool isNShowF;
 }
 
 public class MapManager : MonoBehaviour
@@ -29,8 +31,11 @@ public class MapManager : MonoBehaviour
     public Dictionary<string, MapObject> objTable = new Dictionary<string, MapObject>(); // 所有物品名称 -> 物品
 
     public static MapManager instance;
-    public GameObject mapObj;
+    public GameObject mapObjPrefab;
     public Dictionary<Vector2, GameObject> plants = new Dictionary<Vector2, GameObject>(); // 地图pos -> plant 防止重复放置
+
+    public List<GameObject> mapObjPrefabs; // prefab配置 unity界面配置
+    public Dictionary<string, GameObject> mapNameToPrefab = new Dictionary<string, GameObject>();
 
     void Awake()
     {
@@ -40,6 +45,7 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         foreach (var obj in mObjs) objTable[obj.typeName] = obj;
+        foreach (var obj in mapObjPrefabs) mapNameToPrefab[obj.name] = obj;
     }
 
     void Update()

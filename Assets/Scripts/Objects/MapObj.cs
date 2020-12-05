@@ -18,7 +18,7 @@ public class MapObj : MonoBehaviour
     private MapObject obj;
 
     [HideInInspector]
-    public bool isDrag = false;
+    public bool isDrag = false; // 是否是CellObj中拖动出來的，而不是prefab brush刷的
 
     void Start()
     {
@@ -46,9 +46,9 @@ public class MapObj : MonoBehaviour
         if (obj.packageName != null && obj.packageName != "") showFFunc();
     }
 
-    // 无采摘obj，关闭Box Trigger提高性能 (暂无不可采摘)
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (obj.isNShowF) return; // 无采摘obj，关闭Box Trigger提高性能
         var otherP = collision.gameObject;
         if (otherP.name == "Player")
         {
@@ -58,6 +58,7 @@ public class MapObj : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (obj.isNShowF) return; // TODO 添加一个强制摧毁的功能
         showF.SetActive(false);
     }
 
@@ -91,6 +92,7 @@ public class MapObj : MonoBehaviour
         if (anim != null) anim.enabled = true;
         yield return new WaitForSeconds(obj.deadTime);
         Destroy(gameObject);
+        MapManager.instance.plants.Remove(gameObject.transform.position); // 一定记得删除Map Obj的同时删除plants相应数据
         PackageManager.instance.objTable[obj.packageName].num += obj.packageNum;
         MsgManager.instance.AddMsg("---> Get " + obj.packageName + " x" + obj.packageNum + " <---", new Color(0, 0.6f, 0, 1));
     }

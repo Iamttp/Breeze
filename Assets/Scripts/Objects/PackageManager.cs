@@ -27,24 +27,45 @@ public class PackageManager : MonoBehaviour
 
     [Header("底部栏设置")]
     public List<GameObject> downCells;
-    public Dictionary<string, int> objToCell = new Dictionary<string, int>(); // 物品名称 -> cell索引
 
     public static PackageManager instance;
+    [HideInInspector]
+    private int cellCount = 5;
 
     void Awake()
     {
         instance = this;
     }
 
-    public void updateDownCell()
+    private int nowPage = 0;
+    public void AddPage()
     {
-        int cellIndex = 0;
-        foreach (var obj in pObjs)
+        nowPage++;
+        if (nowPage > 2) nowPage = 2;
+        updateDownCell();
+    }
+
+    public void decPage()
+    {
+        nowPage--;
+        if (nowPage < 0) nowPage = 0;
+        updateDownCell();
+    }
+
+    public void setPage(int page)
+    {
+        if (page < 0 || page > 2) return;
+        nowPage = page;
+        updateDownCell();
+    }
+
+    private void updateDownCell()
+    {
+        for (int i = 0; i < cellCount; i++)
         {
-            //if (obj.num == 0) continue;
-            downCells[cellIndex++].name = obj.typeName;
-            objToCell[obj.typeName] = cellIndex - 1;
-            if (cellIndex >= downCells.Count) break;
+            var index = i + nowPage * cellCount;
+            if (index < pObjs.Count) downCells[i].name = pObjs[index].typeName;
+            else downCells[i].name = "";
         }
     }
 

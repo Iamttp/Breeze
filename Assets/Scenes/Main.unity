@@ -802,13 +802,23 @@ MonoBehaviour:
   - typeName: PTree
     sprite: {fileID: 8623480070183277494, guid: df8f83a887714a5449c2d4d1ea2693ec,
       type: 3}
-    num: 0
+    num: 10
     mapName: 
   - typeName: PStone
     sprite: {fileID: 4619248598060133510, guid: b5f9c26ba19e783468555822df3895c9,
       type: 3}
-    num: 0
+    num: 10
     mapName: 
+  - typeName: PHand0
+    sprite: {fileID: -197198171622996886, guid: 559c8189ef0af134bb09323342413881,
+      type: 3}
+    num: 99
+    mapName: MHand0
+  - typeName: PHand1
+    sprite: {fileID: 4316954427556550241, guid: 559c8189ef0af134bb09323342413881,
+      type: 3}
+    num: 99
+    mapName: MHand1
   downCells:
   - {fileID: 1759737325}
   - {fileID: 13540525}
@@ -836,6 +846,7 @@ MonoBehaviour:
     upMapName: MCarrotU
     upSeconds: 10
     deadTime: 0
+    isNShowF: 0
   - typeName: MPumpkin
     sprite: {fileID: 256334450456512605, guid: df8f83a887714a5449c2d4d1ea2693ec, type: 3}
     packageName: PPumpkin
@@ -843,6 +854,7 @@ MonoBehaviour:
     upMapName: MPumpkinU
     upSeconds: 20
     deadTime: 0
+    isNShowF: 0
   - typeName: MCarrotU
     sprite: {fileID: 8473262294660273508, guid: 3b95831b324215c48b42b0dc6ca1f975,
       type: 3}
@@ -851,6 +863,7 @@ MonoBehaviour:
     upMapName: 
     upSeconds: 0
     deadTime: 0
+    isNShowF: 0
   - typeName: MPumpkinU
     sprite: {fileID: -3927587741752638704, guid: 3b95831b324215c48b42b0dc6ca1f975,
       type: 3}
@@ -859,6 +872,7 @@ MonoBehaviour:
     upMapName: 
     upSeconds: 0
     deadTime: 0
+    isNShowF: 0
   - typeName: MTree
     sprite: {fileID: 0}
     packageName: PTree
@@ -866,6 +880,7 @@ MonoBehaviour:
     upMapName: 
     upSeconds: 0
     deadTime: 1
+    isNShowF: 0
   - typeName: MStone
     sprite: {fileID: 0}
     packageName: PStone
@@ -873,7 +888,28 @@ MonoBehaviour:
     upMapName: 
     upSeconds: 0
     deadTime: 1
-  mapObj: {fileID: 2893125471055869065, guid: b434ec7ff0357cf409710866ddc957ee, type: 3}
+    isNShowF: 0
+  - typeName: MHand0
+    sprite: {fileID: 0}
+    packageName: PHand0
+    packageNum: 1
+    upMapName: 
+    upSeconds: 0
+    deadTime: 1
+    isNShowF: 1
+  - typeName: MHand1
+    sprite: {fileID: 0}
+    packageName: PHand1
+    packageNum: 1
+    upMapName: 
+    upSeconds: 0
+    deadTime: 1
+    isNShowF: 1
+  mapObjPrefab: {fileID: 2893125471055869065, guid: b434ec7ff0357cf409710866ddc957ee,
+    type: 3}
+  mapObjPrefabs:
+  - {fileID: 2893125471055869065, guid: db9f5ee05c4791c45a4ec5401046b413, type: 3}
+  - {fileID: 2893125471055869065, guid: e85730bec534e9f4abc77c9394100325, type: 3}
 --- !u!1 &494467549
 GameObject:
   m_ObjectHideFlags: 0

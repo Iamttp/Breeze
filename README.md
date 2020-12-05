@@ -7,3 +7,12 @@
 * 2d extra 的 Prefab brush 有bug，可能在同一tile刷上多个Prefab
 
 
+---
+
+WASD    移动
+Shift   移动加速
+R       建造物品时旋转
+Space   攻击
+Tab     切换人物
+F       拾取
+123     背包换页

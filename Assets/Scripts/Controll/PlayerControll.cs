@@ -55,6 +55,19 @@ public class PlayerControll : MonoBehaviour
         {
             p.SpeedVal *= 1.5f;
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            PackageManager.instance.setPage(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            PackageManager.instance.setPage(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            PackageManager.instance.setPage(2);
+        }
     }
 
     float nowAttackTime = 0;
@@ -70,16 +83,11 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
-    float nowTabTime = 0;
     void tab()
     {
         // 人物切换
-        nowTabTime += Time.deltaTime;
-        if (nowTabTime < Manager.tabTime) return;
-        if (Input.GetKey(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            nowTabTime = 0;
-
             var players = Manager.instance.players;
             if (players.Count <= 1) return;
             int num = players.FindIndex(a => a == gameObject);

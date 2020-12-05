@@ -13,7 +13,6 @@ public class Manager : MonoBehaviour
     public static Manager instance;
 
     public static float attackTime = 0.5f;
-    public static float tabTime = 0.5f;
     public const int size = 20;  // TODO enemy 生成位置
 
     public enum SceneName
