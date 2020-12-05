@@ -91,6 +91,7 @@ public class MapObj : MonoBehaviour
     {
         if (anim != null) anim.enabled = true;
         yield return new WaitForSeconds(obj.deadTime);
+        Music.instance.playDestory();
         Destroy(gameObject);
         MapManager.instance.plants.Remove(gameObject.transform.position); // 一定记得删除Map Obj的同时删除plants相应数据
         PackageManager.instance.objTable[obj.packageName].num += obj.packageNum;

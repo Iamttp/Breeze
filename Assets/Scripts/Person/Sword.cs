@@ -35,6 +35,7 @@ public class Sword : BasicPerson
     {
         if (State == State.dead) return;
 
+        if (name == "Player") Music.instance.playAttack();
         anim.SetTrigger("attack");
         State = State.attack;
         box.enabled = true;

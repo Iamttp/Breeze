@@ -722,6 +722,7 @@ GameObject:
   - component: {fileID: 413753336}
   - component: {fileID: 413753338}
   - component: {fileID: 413753339}
+  - component: {fileID: 413753340}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -792,12 +793,12 @@ MonoBehaviour:
   - typeName: PCarrot
     sprite: {fileID: -1160318257330121952, guid: df8f83a887714a5449c2d4d1ea2693ec,
       type: 3}
-    num: 5
+    num: 1
     mapName: MCarrot
   - typeName: PPumpkin
     sprite: {fileID: 3623608801754259478, guid: df8f83a887714a5449c2d4d1ea2693ec,
       type: 3}
-    num: 6
+    num: 1
     mapName: MPumpkin
   - typeName: PTree
     sprite: {fileID: 8623480070183277494, guid: df8f83a887714a5449c2d4d1ea2693ec,
@@ -856,19 +857,18 @@ MonoBehaviour:
     deadTime: 0
     isNShowF: 0
   - typeName: MCarrotU
-    sprite: {fileID: 8473262294660273508, guid: 3b95831b324215c48b42b0dc6ca1f975,
+    sprite: {fileID: 5461193036522156848, guid: df8f83a887714a5449c2d4d1ea2693ec,
       type: 3}
     packageName: PCarrot
-    packageNum: 2
+    packageNum: 4
     upMapName: 
     upSeconds: 0
     deadTime: 0
     isNShowF: 0
   - typeName: MPumpkinU
-    sprite: {fileID: -3927587741752638704, guid: 3b95831b324215c48b42b0dc6ca1f975,
-      type: 3}
+    sprite: {fileID: 223211882423954547, guid: df8f83a887714a5449c2d4d1ea2693ec, type: 3}
     packageName: PPumpkin
-    packageNum: 2
+    packageNum: 4
     upMapName: 
     upSeconds: 0
     deadTime: 0
@@ -910,6 +910,18 @@ MonoBehaviour:
   mapObjPrefabs:
   - {fileID: 2893125471055869065, guid: db9f5ee05c4791c45a4ec5401046b413, type: 3}
   - {fileID: 2893125471055869065, guid: e85730bec534e9f4abc77c9394100325, type: 3}
+--- !u!114 &413753340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413753334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f1e67726fd3dc4db88c901aab6c6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &494467549
 GameObject:
   m_ObjectHideFlags: 0

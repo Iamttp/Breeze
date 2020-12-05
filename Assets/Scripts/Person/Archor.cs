@@ -48,6 +48,8 @@ public class Archor : BasicPerson
             return;
         }
         State = State.attack;
+        
+        if (name == "Player") Music.instance.playAttack();
         anim.SetTrigger("attack");
         GameObject arc = Instantiate(ArcPrefab, transform.position, Quaternion.identity);
         arc.GetComponent<ArcFollow>().speed = speedArcVal;

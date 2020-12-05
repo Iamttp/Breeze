@@ -32,7 +32,7 @@ public class RoomCreator : MonoBehaviour
     {
         instance = this;
 
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 60;
         Screen.SetResolution(1920, 1920 / 2, true);
     }
 
