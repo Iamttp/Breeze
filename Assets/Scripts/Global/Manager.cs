@@ -22,23 +22,62 @@ public class Manager : MonoBehaviour
     }
     public SceneName sceneName;
 
+    public bool isNet;
+    jsonPos playerPos;
+    jsonId id;
+
+    void recfunc(Message msg)
+    {
+        switch (msg.id)
+        {
+            case 1:
+                id = JsonUtility.FromJson<jsonId>(System.Text.Encoding.UTF8.GetString(msg.data));
+                Debug.Log(id.Id);
+                if (!NetUtil.instance.Send(msg))
+                    Debug.Log("发送失败");
+                break;
+            case 2:
+                playerPos = JsonUtility.FromJson<jsonPos>(System.Text.Encoding.UTF8.GetString(msg.data));
+                if (!NetUtil.instance.Send(msg))
+                    Debug.Log("发送失败");
+                break;
+        }
+    }
+
     void Awake()
     {
         instance = this;
+        if (isNet)
+        {
+            NetUtil.instance.rece += new NetUtil.receEvent(recfunc);
+            if (NetUtil.instance.startConnect())
+            {
+                Debug.Log("连接成功!");
+            }
+            else
+            {
+                Debug.Log("IP或者端口号错误...，服务器程序未启动");
+                isNet = false;
+            }
+        }
     }
 
     void Start()
     {
-        const int x = 4;
-        const int y = 2;
+        if (!isNet)
+        {
+            playerPos = new jsonPos();
+            playerPos.X = 4;
+            playerPos.Y = 2;
+        }
         // 创建Player
-        createPerson(new Vector3(-x, -y, 0), swordPrefab, Color.blue, true, true);
+        createPerson(new Vector3(-playerPos.X, -playerPos.Y, 0), swordPrefab, Color.blue, true, true);
         // 创建Company
-        createPerson(new Vector3(-x, y, 0), archorPrefab, Color.blue, true);
+        createPerson(new Vector3(-playerPos.X, playerPos.Y, 0), archorPrefab, Color.blue, true);
         // 创建Enemy
-        createPerson(new Vector3(x, -y, 0), archorPrefab, Color.red, false);
+        createPerson(new Vector3(playerPos.X, -playerPos.Y, 0), archorPrefab, Color.red, false);
         // 创建Enemy2
-        createPerson(new Vector3(x, y, 0), swordPrefab, Color.red, false);
+        createPerson(new Vector3(playerPos.X, playerPos.Y, 0), swordPrefab, Color.red, false);
 
         StartCoroutine(createEnemy());
     }

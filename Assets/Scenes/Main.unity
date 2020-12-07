@@ -723,7 +723,6 @@ GameObject:
   - component: {fileID: 413753338}
   - component: {fileID: 413753339}
   - component: {fileID: 413753340}
-  - component: {fileID: 413753341}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -750,6 +749,7 @@ MonoBehaviour:
   enemys: []
   players: []
   sceneName: 1
+  isNet: 1
 --- !u!114 &413753336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,18 +921,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65f1e67726fd3dc4db88c901aab6c6ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &413753341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 413753334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec1576537901674a832ff6f38e994a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &494467549

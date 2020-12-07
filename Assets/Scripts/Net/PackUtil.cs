@@ -24,17 +24,17 @@ public class Message
 // TODO 性能优化
 public class PackUtil
 {
-    public static Message Unpack(byte[] dataPack)
+    public static Message Unpack(byte[] dataPack, int startIndex)
     {
         byte[] arr = new byte[4];
-        Array.Copy(dataPack, 0, arr, 0, 4);
+        Array.Copy(dataPack, startIndex, arr, 0, 4);
         uint len = BitConverter.ToUInt32(arr, 0);
-        Array.Copy(dataPack, 4, arr, 0, 4);
+        Array.Copy(dataPack, startIndex + 4, arr, 0, 4);
         uint id = BitConverter.ToUInt32(arr, 0);
 
         byte[] data = new byte[len];
         // len id 4 + 4 = 8 字节
-        Array.Copy(dataPack, 8, data, 0, len);
+        Array.Copy(dataPack, startIndex + 8, data, 0, len);
         return new Message(id, data);
     }
 
