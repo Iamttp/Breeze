@@ -7,19 +7,25 @@ using System.Threading;
 
 
 [System.Serializable]
-class jsonPos
+class json2
 {
     public float X;
     public float Y;
 }
 
 [System.Serializable]
-class jsonId
+class json1
 {
     public int Id;
 }
 
-
+[System.Serializable]
+class json3
+{
+    public float X;
+    public float Y;
+    public int Id;
+}
 
 // 小心Socket内存泄漏
 public class NetUtil
@@ -48,8 +54,8 @@ public class NetUtil
         try
         {
             int _port = 8999;
-            string _ip = "39.97.171.148";
-            //string _ip = "127.0.0.1";
+            //string _ip = "39.97.171.148";
+            string _ip = "127.0.0.1";
 
             //创建客户端Socket，获得远程ip和端口号
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);

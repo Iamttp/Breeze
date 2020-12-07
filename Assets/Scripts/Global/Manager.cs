@@ -23,23 +23,27 @@ public class Manager : MonoBehaviour
     public SceneName sceneName;
 
     public bool isNet;
-    jsonPos playerPos;
-    jsonId id;
+    json2 playerPos;
+    json1 id;
+    json3 otherPos;
 
+    // 不可在内部使用Instantiate等函數，非主线程
     void recfunc(Message msg)
     {
         switch (msg.id)
         {
             case 1:
-                id = JsonUtility.FromJson<jsonId>(System.Text.Encoding.UTF8.GetString(msg.data));
+                id = JsonUtility.FromJson<json1>(System.Text.Encoding.UTF8.GetString(msg.data));
                 Debug.Log(id.Id);
-                if (!NetUtil.instance.Send(msg))
-                    Debug.Log("发送失败");
+                //if (!NetUtil.instance.Send(msg))
+                //    Debug.Log("发送失败");
                 break;
             case 2:
-                playerPos = JsonUtility.FromJson<jsonPos>(System.Text.Encoding.UTF8.GetString(msg.data));
-                if (!NetUtil.instance.Send(msg))
-                    Debug.Log("发送失败");
+                playerPos = JsonUtility.FromJson<json2>(System.Text.Encoding.UTF8.GetString(msg.data));
+                break;
+            case 3:
+                otherPos = JsonUtility.FromJson<json3>(System.Text.Encoding.UTF8.GetString(msg.data));
+                //Debug.Log(otherPos.Id + ": " + otherPos.X + ", " + otherPos.Y);
                 break;
         }
     }
@@ -66,20 +70,30 @@ public class Manager : MonoBehaviour
     {
         if (!isNet)
         {
-            playerPos = new jsonPos();
+            playerPos = new json2();
             playerPos.X = 4;
             playerPos.Y = 2;
-        }
-        // 创建Player
-        createPerson(new Vector3(-playerPos.X, -playerPos.Y, 0), swordPrefab, Color.blue, true, true);
-        // 创建Company
-        createPerson(new Vector3(-playerPos.X, playerPos.Y, 0), archorPrefab, Color.blue, true);
-        // 创建Enemy
-        createPerson(new Vector3(playerPos.X, -playerPos.Y, 0), archorPrefab, Color.red, false);
-        // 创建Enemy2
-        createPerson(new Vector3(playerPos.X, playerPos.Y, 0), swordPrefab, Color.red, false);
 
-        StartCoroutine(createEnemy());
+            // 创建Player
+            createPerson(new Vector3(-playerPos.X, -playerPos.Y, 0), swordPrefab, Color.blue, true, true);
+            // 创建Company
+            createPerson(new Vector3(-playerPos.X, playerPos.Y, 0), archorPrefab, Color.blue, true);
+            // 创建Enemy
+            createPerson(new Vector3(playerPos.X, -playerPos.Y, 0), archorPrefab, Color.red, false);
+            // 创建Enemy2
+            createPerson(new Vector3(playerPos.X, playerPos.Y, 0), swordPrefab, Color.red, false);
+
+            StartCoroutine(createEnemy());
+        }
+        else
+        {
+            // TODO 服务器延迟时，可能playerPos为null 更优雅的解决？
+            while (playerPos == null) ;
+            // 创建Player
+            createPerson(new Vector3(-playerPos.X, -playerPos.Y, 0), swordPrefab, Color.blue, true, true);
+            // 创建Company
+            createPerson(new Vector3(-playerPos.X, playerPos.Y, 0), archorPrefab, Color.blue, true);
+        }
     }
 
     IEnumerator createEnemy()

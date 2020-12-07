@@ -38,12 +38,33 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
             rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
             GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000); // 重叠bug解决
         }
+
+        // 更新血条位置
+        Vector2 pos = Camera.main.WorldToScreenPoint(transform.position);
+        pos = new Vector2(pos.x - Screen.width / 2, pos.y - Screen.height / 2 + 50);
+        red.GetComponent<RectTransform>().anchoredPosition = pos;
+        black.GetComponent<RectTransform>().anchoredPosition = pos;
     }
 
+
+    private json2 playerPos = new json2();
     public void move()
     {
-        if (State == State.dead) return;
+        anim.SetFloat("speed", moveVec.magnitude);
         
+        if (State == State.dead) return;
+        if (moveVec.magnitude <= 0.001f) return;
+
+        if (Manager.instance.isNet && name == "Player")
+        {
+            playerPos.X = transform.position.x;
+            playerPos.Y = transform.position.y;
+            byte[] data = System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(playerPos));
+            Message msg = new Message(201, data);
+            if (!NetUtil.instance.Send(msg))
+                Debug.Log("发送失败");
+        }
+
         // 动画翻转
         if (moveVec.x != 0)
         {
@@ -52,13 +73,6 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
             transform.localScale = vec; // -1 翻转
         }
         State = State.run;
-        anim.SetFloat("speed", moveVec.magnitude);
-
-        // 更新血条位置
-        Vector2 pos = Camera.main.WorldToScreenPoint(transform.position);
-        pos = new Vector2(pos.x - Screen.width / 2, pos.y - Screen.height / 2 + 50);
-        red.GetComponent<RectTransform>().anchoredPosition = pos;
-        black.GetComponent<RectTransform>().anchoredPosition = pos;
     }
 
     public abstract void attack();
