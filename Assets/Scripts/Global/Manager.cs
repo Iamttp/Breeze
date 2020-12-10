@@ -23,37 +23,14 @@ public class Manager : MonoBehaviour
     public SceneName sceneName;
 
     public bool isNet;
-    json2 playerPos;
-    json1 id;
-    json3 otherPos;
-
-    // 不可在内部使用Instantiate等函數，非主线程
-    void recfunc(Message msg)
-    {
-        switch (msg.id)
-        {
-            case 1:
-                id = JsonUtility.FromJson<json1>(System.Text.Encoding.UTF8.GetString(msg.data));
-                Debug.Log(id.Id);
-                //if (!NetUtil.instance.Send(msg))
-                //    Debug.Log("发送失败");
-                break;
-            case 2:
-                playerPos = JsonUtility.FromJson<json2>(System.Text.Encoding.UTF8.GetString(msg.data));
-                break;
-            case 3:
-                otherPos = JsonUtility.FromJson<json3>(System.Text.Encoding.UTF8.GetString(msg.data));
-                //Debug.Log(otherPos.Id + ": " + otherPos.X + ", " + otherPos.Y);
-                break;
-        }
-    }
+    private Queue<Message> msgQ;
+    public Dictionary<int, GameObject> netIdToObj = new Dictionary<int, GameObject>();
 
     void Awake()
     {
         instance = this;
         if (isNet)
         {
-            NetUtil.instance.rece += new NetUtil.receEvent(recfunc);
             if (NetUtil.instance.startConnect())
             {
                 Debug.Log("连接成功!");
@@ -70,7 +47,7 @@ public class Manager : MonoBehaviour
     {
         if (!isNet)
         {
-            playerPos = new json2();
+            json2 playerPos = new json2();
             playerPos.X = 4;
             playerPos.Y = 2;
 
@@ -87,12 +64,7 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            // TODO 服务器延迟时，可能playerPos为null 更优雅的解决？
-            while (playerPos == null) ;
-            // 创建Player
-            createPerson(new Vector3(-playerPos.X, -playerPos.Y, 0), swordPrefab, Color.blue, true, true);
-            // 创建Company
-            createPerson(new Vector3(-playerPos.X, playerPos.Y, 0), archorPrefab, Color.blue, true);
+            msgQ = NetUtil.instance.msgQ;
         }
     }
 
@@ -113,12 +85,59 @@ public class Manager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
+    json1 id;
+    json2 playerPos;
+    json3 otherPos;
+    private Message lastMsg = null;
 
+    private void FixedUpdate()
+    {
+        Message msg;
+        if (msgQ == null) return;
+        lock (msgQ)
+        {
+            if (msgQ.Count == 0) return;
+            //Debug.Log(recvJson.Count);
+            msg = msgQ.Dequeue();
+        }
+        switch (msg.id)
+        {
+            case 1:
+                id = JsonUtility.FromJson<json1>(System.Text.Encoding.UTF8.GetString(msg.data));
+                break;
+            case 2:
+                playerPos = JsonUtility.FromJson<json2>(System.Text.Encoding.UTF8.GetString(msg.data));
+                id = JsonUtility.FromJson<json1>(System.Text.Encoding.UTF8.GetString(lastMsg.data));
+                netIdToObj[id.Id] = createPerson(new Vector3(playerPos.X, playerPos.Y, 0), swordPrefab, Color.blue, true, true);
+                break;
+            case 3:
+                otherPos = JsonUtility.FromJson<json3>(System.Text.Encoding.UTF8.GetString(msg.data));
+                if (!netIdToObj.ContainsKey(otherPos.Id))
+                {
+                    netIdToObj[otherPos.Id] = createPerson(new Vector3(otherPos.X, otherPos.Y, 0), swordPrefab, Color.red, false, false, true);
+                }
+                else
+                {
+                    //Debug.Log(netIdToObj[otherPos.Id].transform.position);
+                    //Debug.Log(new Vector3(otherPos.X, otherPos.Y, 0));
+                    netIdToObj[otherPos.Id].transform.position = new Vector3(otherPos.X, otherPos.Y, 0);
+                }
+                break;
+            case 4:
+                //Debug.Log("destory");
+                id = JsonUtility.FromJson<json1>(System.Text.Encoding.UTF8.GetString(msg.data));
+                Destroy(netIdToObj[id.Id]);
+                netIdToObj.Remove(id.Id);
+                break;
+        }
+        lastMsg = msg;
     }
 
-    GameObject createPerson(Vector3 pos, GameObject prefab, Color color, bool owner, bool isPlayer = false)
+    void Update()
+    {
+    }
+
+    GameObject createPerson(Vector3 pos, GameObject prefab, Color color, bool owner, bool isPlayer = false, bool isOtherPlayer = false)
     {
         var temp = Instantiate(prefab, pos, Quaternion.identity);
         if (isPlayer) temp.name = "Player";
@@ -142,7 +161,8 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            temp.AddComponent<ComputerControll>();
+            if (isOtherPlayer) temp.AddComponent<OtherControll>();
+            else temp.AddComponent<ComputerControll>();
         }
         return temp;
     }

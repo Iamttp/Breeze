@@ -7,30 +7,51 @@ using System.Threading;
 
 
 [System.Serializable]
-class json2
+public class baseJson
 {
-    public float X;
-    public float Y;
 }
 
 [System.Serializable]
-class json1
+class json2 : baseJson
 {
-    public int Id;
+    public float X;
+    public float Y;
+    public override string ToString()
+    {
+        return X + " " + Y;
+    }
 }
 
 [System.Serializable]
-class json3
+class json1 : baseJson
+{
+    public int Id;
+    public override string ToString()
+    {
+        return Id.ToString();
+    }
+}
+
+[System.Serializable]
+class json3 : baseJson
 {
     public float X;
     public float Y;
     public int Id;
+    public override string ToString()
+    {
+        return Id + " " + X + " " + Y;
+    }
 }
+
 
 // 小心Socket内存泄漏
 public class NetUtil
 {
     private static NetUtil instan = null;
+
+    public Queue<Message> msgQ = new Queue<Message>(); // 队列 + 锁
+
     private NetUtil() { }
 
     public static NetUtil instance
@@ -45,17 +66,14 @@ public class NetUtil
         }
     }
 
-    public delegate void receEvent(Message msg);
-    public event receEvent rece;
-
     Socket socket;
     public bool startConnect()
     {
         try
         {
             int _port = 8999;
-            //string _ip = "39.97.171.148";
-            string _ip = "127.0.0.1";
+            string _ip = "39.97.171.148";
+            //string _ip = "127.0.0.1";
 
             //创建客户端Socket，获得远程ip和端口号
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -100,7 +118,10 @@ public class NetUtil
                 do
                 {
                     msg = PackUtil.Unpack(receiveBuf, startIndex);
-                    rece(msg);
+                    lock (msgQ)
+                    {
+                        msgQ.Enqueue(msg);
+                    }
                     startIndex += (int)msg.len + 8;
                 }
                 while (startIndex < len);

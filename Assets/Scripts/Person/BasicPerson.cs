@@ -36,8 +36,9 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
         if (State == State.run)
         {
             rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
-            GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000); // 重叠bug解决
         }
+        
+        GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000); // 重叠bug解决
 
         // 更新血条位置
         Vector2 pos = Camera.main.WorldToScreenPoint(transform.position);

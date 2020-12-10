@@ -11,7 +11,7 @@ public class MainCreator : MonoBehaviour
         instance = this;
 
         Application.targetFrameRate = 60;
-        Screen.SetResolution(1920, 1080, true); // TODO 分辨率可变
+        //Screen.SetResolution(1920, 1080, true); // TODO 分辨率可变
     }
 
     void Start()
