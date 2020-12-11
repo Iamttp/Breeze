@@ -29,11 +29,8 @@ public class PackUtil
         byte[] arr = new byte[4];
         Array.Copy(dataPack, startIndex, arr, 0, 4);
         uint len = BitConverter.ToUInt32(arr, 0);
-        if (startIndex + 4 >= dataPack.Length) return null;
         Array.Copy(dataPack, startIndex + 4, arr, 0, 4);
         uint id = BitConverter.ToUInt32(arr, 0);
-
-        if (startIndex + 8 >= dataPack.Length) return null;
         byte[] data = new byte[len];
         // len id 4 + 4 = 8 字节
         Array.Copy(dataPack, startIndex + 8, data, 0, len);

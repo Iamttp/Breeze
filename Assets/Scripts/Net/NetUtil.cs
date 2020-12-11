@@ -52,7 +52,7 @@ public class NetUtil
     private static NetUtil instan = null;
 
     public Queue<Message> msgQ = new Queue<Message>(); // 队列 + 锁
-    const int MAX_COUNT = 2; // 设定消息队列的最大缓存数，防止有消息未收到
+    const int MAX_COUNT = 10; // 设定消息队列的最大缓存数，防止有消息未收到
 
     // ImportMsgQ 不错过重要消息
     public Queue<Message> importMsgQ = new Queue<Message>();
@@ -106,7 +106,8 @@ public class NetUtil
     /// 在打包程序运行时，程序退出，线程退出
     /// 总之，Thread中不要使用任何需要回到unity中执行的函数。
     /// 
-    byte[] receiveBuf = new byte[1024];
+    const int MAX_RECEIVE_SIZE = 1024 * 4;
+    byte[] receiveBuf = new byte[MAX_RECEIVE_SIZE];
     private void Received()
     {
         while (true)
@@ -118,11 +119,22 @@ public class NetUtil
                 if (len == 0) break;
                 Message msg = null;
                 int startIndex = 0;
+
+                UnityEngine.Debug.Log(len);
+                //////////////////////// 一旦超过容量，读取buf直到为空
+                bool flag = false;
+                while (len == MAX_RECEIVE_SIZE)
+                {
+                    len = socket.Receive(receiveBuf);
+                    flag = true;
+                }
+                if (flag) continue;
+                //////////////////////
+
                 // 粘包问题解决
                 do
                 {
                     msg = PackUtil.Unpack(receiveBuf, startIndex);
-                    if (msg == null) break;
                     if (msg.id == 3)
                     {
                         lock (msgQ)
@@ -146,7 +158,7 @@ public class NetUtil
             {
                 socket.Close();
                 socket.Dispose();
-                return;
+                break;
             }
         }
     }
