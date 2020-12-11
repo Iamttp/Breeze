@@ -40,6 +40,7 @@ public class Archor : BasicPerson
     {
         if (State == State.dead) return;
 
+        sendMsg();
         GameObject temp = AI.getMinDisEnemy(transform, Owner, maxAttackDis);
         if (temp == null)
         {
@@ -48,7 +49,7 @@ public class Archor : BasicPerson
             return;
         }
         State = State.attack;
-        
+
         if (name == "Player") Music.instance.playAttack();
         anim.SetTrigger("attack");
         GameObject arc = Instantiate(ArcPrefab, transform.position, Quaternion.identity);
@@ -62,5 +63,6 @@ public class Archor : BasicPerson
     {
         yield return new WaitForSeconds(0.1f); // 攻击范围显示持续时间
         attackDisShow.SetActive(false);
+        State = State.idle;
     }
 }

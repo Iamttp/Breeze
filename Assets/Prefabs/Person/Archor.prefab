@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 6505589383242432598}
   - component: {fileID: 6505589383242432599}
   - component: {fileID: 2441652330981542611}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Archor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

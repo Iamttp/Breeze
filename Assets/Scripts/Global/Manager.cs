@@ -126,12 +126,20 @@ public class Manager : MonoBehaviour
                 if (!netIdToObj.ContainsKey(otherPos.Id))
                 {
                     netIdToObj[otherPos.Id] = createPerson(new Vector3(otherPos.X, otherPos.Y, 0), swordPrefab, Color.red, false, false, true);
+                    Debug.Log("创建other");
                 }
                 else
                 {
-                    //Debug.Log(netIdToObj[otherPos.Id].transform.position);
-                    //Debug.Log(new Vector3(otherPos.X, otherPos.Y, 0));
+                    var scriptIperson = netIdToObj[otherPos.Id].GetComponent<IPerson>();
+
                     netIdToObj[otherPos.Id].transform.position = new Vector3(otherPos.X, otherPos.Y, 0);
+                    scriptIperson.State = otherPos.State;
+                    if (otherPos.State == State.attack)
+                    {
+                        scriptIperson.attack();
+                    }
+                    scriptIperson.MoveVec = new Vector2(otherPos.MoveVecX, otherPos.MoveVecY);
+                    scriptIperson.move();
                 }
                 break;
             case 4:

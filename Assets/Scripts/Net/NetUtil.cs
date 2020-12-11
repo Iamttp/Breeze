@@ -35,10 +35,13 @@ class json3 : baseJson
 {
     public float X;
     public float Y;
+    public State State;
+    public float MoveVecX;
+    public float MoveVecY;
     public int Id;
     public override string ToString()
     {
-        return Id + " " + X + " " + Y;
+        return Id + " " + X + " " + Y + " " + State + " " + MoveVecX + " " + MoveVecY;
     }
 }
 
@@ -119,7 +122,8 @@ public class NetUtil
                 do
                 {
                     msg = PackUtil.Unpack(receiveBuf, startIndex);
-                    if(msg.id == 3)
+                    if (msg == null) break;
+                    if (msg.id == 3)
                     {
                         lock (msgQ)
                         {
@@ -127,7 +131,7 @@ public class NetUtil
                             msgQ.Enqueue(msg);
                         }
                     }
-                    else
+                    else // TODO 攻击状态应该为importMsgQ
                     {
                         lock (importMsgQ)
                         {
@@ -140,7 +144,6 @@ public class NetUtil
             }
             catch
             {
-                // Debug.Log("接收数据失败");   
                 socket.Close();
                 socket.Dispose();
                 return;
@@ -160,8 +163,6 @@ public class NetUtil
         }
         catch
         {
-            socket.Close();
-            socket.Dispose();
             return false;
         }
         return true;

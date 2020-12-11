@@ -31,13 +31,36 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
     TypePerson typePerson;
     public TypePerson TypePerson { get => typePerson; set => typePerson = value; }
 
+
+    protected void sendMsg()
+    {
+        if (!Manager.instance.isNet || name != "Player") return;
+
+        playerPos.X = transform.position.x;
+        playerPos.Y = transform.position.y;
+        playerPos.State = State;
+        playerPos.MoveVecX = moveVec.x;
+        playerPos.MoveVecY = moveVec.y;
+        foreach (var item in Manager.instance.netIdToObj)
+            if (item.Value == gameObject)
+            {
+                playerPos.Id = item.Key;
+                break;
+            }
+        byte[] data = System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(playerPos));
+        Message msg = new Message(201, data);
+        if (!NetUtil.instance.Send(msg)) // TODO 服务器崩溃考虑
+            Debug.Log("发送失败");
+    }
+
+    private json3 playerPos = new json3();
     protected void FixedUpdate()
     {
         if (State == State.run)
         {
             rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
         }
-        
+
         GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000); // 重叠bug解决
 
         // 更新血条位置
@@ -45,26 +68,16 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
         pos = new Vector2(pos.x - Screen.width / 2, pos.y - Screen.height / 2 + 50);
         red.GetComponent<RectTransform>().anchoredPosition = pos;
         black.GetComponent<RectTransform>().anchoredPosition = pos;
+
+        sendMsg();
     }
 
-
-    private json2 playerPos = new json2();
     public void move()
     {
         anim.SetFloat("speed", moveVec.magnitude);
-        
+
         if (State == State.dead) return;
         if (moveVec.magnitude <= 0.001f) return;
-
-        if (Manager.instance.isNet && name == "Player")
-        {
-            playerPos.X = transform.position.x;
-            playerPos.Y = transform.position.y;
-            byte[] data = System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(playerPos));
-            Message msg = new Message(201, data);
-            if (!NetUtil.instance.Send(msg))
-                Debug.Log("发送失败");
-        }
 
         // 动画翻转
         if (moveVec.x != 0)

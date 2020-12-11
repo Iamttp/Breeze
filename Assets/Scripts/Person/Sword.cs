@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Sword : BasicPerson
 {
     BoxCollider2D box;
-    
+
     void Start()
     {
         TypePerson = TypePerson.Sword;
@@ -35,6 +35,7 @@ public class Sword : BasicPerson
     {
         if (State == State.dead) return;
 
+        sendMsg();
         if (name == "Player") Music.instance.playAttack();
         anim.SetTrigger("attack");
         State = State.attack;
@@ -48,6 +49,7 @@ public class Sword : BasicPerson
         yield return new WaitForSeconds(0.1f); // 攻击持续时间
         box.enabled = false;
         box.isTrigger = false;
+        State = State.idle;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

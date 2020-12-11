@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Music : MonoBehaviour
 {
     //音源AudioSource相当于播放器，而音效AudioClip相当于磁带
-    private AudioSource music;
+    [HideInInspector]
+    public AudioSource music;
     private AudioClip back;
     private AudioClip destory;
     private AudioClip attack;
@@ -19,6 +20,7 @@ public class Music : MonoBehaviour
             instance = this;
             //给对象添加一个AudioSource组件
             music = gameObject.AddComponent<AudioSource>();
+            music.volume = Begin.musicVol;
             back = Resources.Load<AudioClip>("Music/back");
             destory = Resources.Load<AudioClip>("Music/destory");
             attack = Resources.Load<AudioClip>("Music/attack");
