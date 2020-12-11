@@ -24,6 +24,7 @@ public class Manager : MonoBehaviour
 
     public bool isNet;
     private Queue<Message> msgQ;
+    private Queue<Message> importMsgQ;
     public Dictionary<int, GameObject> netIdToObj = new Dictionary<int, GameObject>();
 
     void Awake()
@@ -65,6 +66,7 @@ public class Manager : MonoBehaviour
         else
         {
             msgQ = NetUtil.instance.msgQ;
+            importMsgQ = NetUtil.instance.importMsgQ;
         }
     }
 
@@ -92,14 +94,23 @@ public class Manager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Message msg;
-        if (msgQ == null) return;
-        lock (msgQ)
+        if (!isNet) return;
+
+        Message msg = null;
+        lock (importMsgQ)
         {
-            if (msgQ.Count == 0) return;
-            //Debug.Log(recvJson.Count);
-            msg = msgQ.Dequeue();
+            if (importMsgQ.Count != 0) msg = importMsgQ.Dequeue();
         }
+
+        if (msg == null)
+        {
+            lock (msgQ)
+            {
+                if (msgQ.Count != 0) msg = msgQ.Dequeue();
+            }
+        }
+        if (msg == null) return;
+
         switch (msg.id)
         {
             case 1:

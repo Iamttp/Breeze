@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-//using UnityEngine;
-
 
 [System.Serializable]
 public class baseJson
@@ -51,6 +49,10 @@ public class NetUtil
     private static NetUtil instan = null;
 
     public Queue<Message> msgQ = new Queue<Message>(); // 队列 + 锁
+    const int MAX_COUNT = 2; // 设定消息队列的最大缓存数，防止有消息未收到
+
+    // ImportMsgQ 不错过重要消息
+    public Queue<Message> importMsgQ = new Queue<Message>();
 
     private NetUtil() { }
 
@@ -117,9 +119,20 @@ public class NetUtil
                 do
                 {
                     msg = PackUtil.Unpack(receiveBuf, startIndex);
-                    lock (msgQ)
+                    if(msg.id == 3)
                     {
-                        msgQ.Enqueue(msg);
+                        lock (msgQ)
+                        {
+                            if (msgQ.Count == MAX_COUNT) msgQ.Dequeue();
+                            msgQ.Enqueue(msg);
+                        }
+                    }
+                    else
+                    {
+                        lock (importMsgQ)
+                        {
+                            importMsgQ.Enqueue(msg);
+                        }
                     }
                     startIndex += (int)msg.len + 8;
                 }
