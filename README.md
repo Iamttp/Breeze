@@ -10,6 +10,17 @@
 
 * 血泪教训，网络相关处理函数一定放在FixedUpdate。否则Update调用时间不固定！
 
+* 服务器传输数据时人物数据逻辑考虑：
+
+当设置SpeedVal = 0时，不靠下面的语句更新位置，靠transform强制更新位置，出现人物卡顿的情况，分析数据传输时有一部分没有处理（应该不是丢包，毕竟tcp）。这样会在人物移动结束时，可能来不及更新速度，导致人物位置回退。
+
+```csharp
+rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
+```
+
+当不设置SpeedVal = 0时，人物移动断断续续，原因同上。
+
+
 ---
 
 ## MsgId 约定

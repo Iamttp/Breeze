@@ -117,15 +117,18 @@ public class Manager : MonoBehaviour
                 id = JsonUtility.FromJson<json1>(System.Text.Encoding.UTF8.GetString(msg.data));
                 break;
             case 2:
+                // 依据id和位置创建人物
                 playerPos = JsonUtility.FromJson<json2>(System.Text.Encoding.UTF8.GetString(msg.data));
                 id = JsonUtility.FromJson<json1>(System.Text.Encoding.UTF8.GetString(lastMsg.data));
                 netIdToObj[id.Id] = createPerson(new Vector3(playerPos.X, playerPos.Y, 0), swordPrefab, Color.blue, true, true);
                 break;
             case 3:
+                // 创建/更新其他玩家
                 otherPos = JsonUtility.FromJson<json3>(System.Text.Encoding.UTF8.GetString(msg.data));
                 if (!netIdToObj.ContainsKey(otherPos.Id))
                 {
                     netIdToObj[otherPos.Id] = createPerson(new Vector3(otherPos.X, otherPos.Y, 0), swordPrefab, Color.red, false, false, true);
+                    //netIdToObj[otherPos.Id].GetComponent<IPerson>().SpeedVal = 0; // 速度强制设置为0 靠transform强制更新
                     Debug.Log("创建other");
                 }
                 else

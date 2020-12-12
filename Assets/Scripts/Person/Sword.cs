@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Sword : BasicPerson
 {
@@ -35,7 +34,6 @@ public class Sword : BasicPerson
     {
         if (State == State.dead) return;
 
-        sendMsg();
         if (name == "Player") Music.instance.playAttack();
         anim.SetTrigger("attack");
         State = State.attack;

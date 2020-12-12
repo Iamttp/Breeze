@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Archor : BasicPerson
 {
@@ -40,7 +39,6 @@ public class Archor : BasicPerson
     {
         if (State == State.dead) return;
 
-        sendMsg();
         GameObject temp = AI.getMinDisEnemy(transform, Owner, maxAttackDis);
         if (temp == null)
         {

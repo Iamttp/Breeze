@@ -80,6 +80,7 @@ public class PlayerControll : MonoBehaviour
         {
             nowAttackTime = 0;
             p.attack();
+            BasicPerson.sendMsg(gameObject);
         }
     }
 

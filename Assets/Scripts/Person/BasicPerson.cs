@@ -31,29 +31,29 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
     TypePerson typePerson;
     public TypePerson TypePerson { get => typePerson; set => typePerson = value; }
 
-
-    protected void sendMsg()
+    static json3 playerInfo = new json3();
+    public static void sendMsg(GameObject gameObject)
     {
-        if (!Manager.instance.isNet || name != "Player") return;
-
-        playerPos.X = transform.position.x;
-        playerPos.Y = transform.position.y;
-        playerPos.State = State;
-        playerPos.MoveVecX = moveVec.x;
-        playerPos.MoveVecY = moveVec.y;
+        if (!Manager.instance.isNet || gameObject.name != "Player") return;
+    
+        var script = gameObject.GetComponent<IPerson>();
+        playerInfo.X = gameObject.transform.position.x;
+        playerInfo.Y = gameObject.transform.position.y;
+        playerInfo.State = script.State;
+        playerInfo.MoveVecX = script.MoveVec.x;
+        playerInfo.MoveVecY = script.MoveVec.y;
         foreach (var item in Manager.instance.netIdToObj)
             if (item.Value == gameObject)
             {
-                playerPos.Id = item.Key;
+                playerInfo.Id = item.Key;
                 break;
             }
-        byte[] data = System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(playerPos));
+        byte[] data = System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(playerInfo));
         Message msg = new Message(201, data);
         if (!NetUtil.instance.Send(msg)) // TODO 服务器崩溃考虑
             Debug.Log("发送失败");
     }
 
-    private json3 playerPos = new json3();
     protected void FixedUpdate()
     {
         if (State == State.run)
@@ -69,7 +69,7 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
         red.GetComponent<RectTransform>().anchoredPosition = pos;
         black.GetComponent<RectTransform>().anchoredPosition = pos;
 
-        sendMsg();
+        sendMsg(gameObject);
     }
 
     public void move()
