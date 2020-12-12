@@ -4,6 +4,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
+/// <summary>
+/// 为保证传输速度 float 类型由 string 类型替代。（暂定保留两位小数）
+/// </summary>
 [System.Serializable]
 public class baseJson
 {
@@ -12,37 +15,25 @@ public class baseJson
 [System.Serializable]
 class json2 : baseJson
 {
-    public float X;
-    public float Y;
-    public override string ToString()
-    {
-        return X + " " + Y;
-    }
+    public string X;
+    public string Y;
 }
 
 [System.Serializable]
 class json1 : baseJson
 {
     public int Id;
-    public override string ToString()
-    {
-        return Id.ToString();
-    }
 }
 
 [System.Serializable]
 class json3 : baseJson
 {
-    public float X;
-    public float Y;
+    public string X;
+    public string Y;
     public State State;
-    public float MoveVecX;
-    public float MoveVecY;
+    public string MoveVecX;
+    public string MoveVecY;
     public int Id;
-    public override string ToString()
-    {
-        return Id + " " + X + " " + Y + " " + State + " " + MoveVecX + " " + MoveVecY;
-    }
 }
 
 

@@ -31,17 +31,22 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
     TypePerson typePerson;
     public TypePerson TypePerson { get => typePerson; set => typePerson = value; }
 
+    public static string getString(float val)
+    {
+        return val.ToString("0.00");
+    }
+
     static json3 playerInfo = new json3();
     public static void sendMsg(GameObject gameObject)
     {
         if (!Manager.instance.isNet || gameObject.name != "Player") return;
-    
+
         var script = gameObject.GetComponent<IPerson>();
-        playerInfo.X = gameObject.transform.position.x;
-        playerInfo.Y = gameObject.transform.position.y;
+        playerInfo.X = getString(gameObject.transform.position.x);
+        playerInfo.Y = getString(gameObject.transform.position.y);
         playerInfo.State = script.State;
-        playerInfo.MoveVecX = script.MoveVec.x;
-        playerInfo.MoveVecY = script.MoveVec.y;
+        playerInfo.MoveVecX = getString(script.MoveVec.x);
+        playerInfo.MoveVecY = getString(script.MoveVec.y);
         foreach (var item in Manager.instance.netIdToObj)
             if (item.Value == gameObject)
             {
@@ -54,8 +59,27 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
             Debug.Log("发送失败");
     }
 
+    private int stopFlag = 5; // SendMsg 兴趣点， 当移动后，后5步操作感兴趣
+    void updateSendMsg()
+    {
+        if (MoveVec.magnitude > 0.001f)
+        {
+            sendMsg(gameObject);
+            stopFlag = 5;
+        }
+        else
+        {
+            if (stopFlag-- > 0)
+            {
+                sendMsg(gameObject);
+            }
+        }
+    }
+
     protected void FixedUpdate()
     {
+        updateSendMsg();
+
         if (State == State.run)
         {
             rg.MovePosition(rg.position + MoveVec * SpeedVal * Time.fixedDeltaTime);
@@ -68,8 +92,6 @@ public abstract class BasicPerson : MonoBehaviour, IPerson
         pos = new Vector2(pos.x - Screen.width / 2, pos.y - Screen.height / 2 + 50);
         red.GetComponent<RectTransform>().anchoredPosition = pos;
         black.GetComponent<RectTransform>().anchoredPosition = pos;
-
-        sendMsg(gameObject);
     }
 
     public void move()

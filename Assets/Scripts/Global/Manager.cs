@@ -48,18 +48,18 @@ public class Manager : MonoBehaviour
     {
         if (!isNet)
         {
-            json2 playerPos = new json2();
-            playerPos.X = 4;
-            playerPos.Y = 2;
+            Vector2 playerPos = new Vector2();
+            playerPos.x = 4;
+            playerPos.y = 2;
 
             // 创建Player
-            createPerson(new Vector3(-playerPos.X, -playerPos.Y, 0), swordPrefab, Color.blue, true, true);
+            createPerson(new Vector3(-playerPos.x, -playerPos.y, 0), swordPrefab, Color.blue, true, true);
             // 创建Company
-            createPerson(new Vector3(-playerPos.X, playerPos.Y, 0), archorPrefab, Color.blue, true);
+            createPerson(new Vector3(-playerPos.x, playerPos.y, 0), archorPrefab, Color.blue, true);
             // 创建Enemy
-            createPerson(new Vector3(playerPos.X, -playerPos.Y, 0), archorPrefab, Color.red, false);
+            createPerson(new Vector3(playerPos.x, -playerPos.y, 0), archorPrefab, Color.red, false);
             // 创建Enemy2
-            createPerson(new Vector3(playerPos.X, playerPos.Y, 0), swordPrefab, Color.red, false);
+            createPerson(new Vector3(playerPos.x, playerPos.y, 0), swordPrefab, Color.red, false);
 
             StartCoroutine(createEnemy());
         }
@@ -89,7 +89,7 @@ public class Manager : MonoBehaviour
 
     json1 id;
     json2 playerPos;
-    json3 otherPos;
+    json3 otherInfo;
     private Message lastMsg = null;
 
     private void FixedUpdate()
@@ -120,28 +120,29 @@ public class Manager : MonoBehaviour
                 // 依据id和位置创建人物
                 playerPos = JsonUtility.FromJson<json2>(System.Text.Encoding.UTF8.GetString(msg.data));
                 id = JsonUtility.FromJson<json1>(System.Text.Encoding.UTF8.GetString(lastMsg.data));
-                netIdToObj[id.Id] = createPerson(new Vector3(playerPos.X, playerPos.Y, 0), swordPrefab, Color.blue, true, true);
+                netIdToObj[id.Id] = createPerson(new Vector3(float.Parse(playerPos.X), float.Parse(playerPos.Y), 0), swordPrefab, Color.blue, true, true);
                 break;
             case 3:
                 // 创建/更新其他玩家
-                otherPos = JsonUtility.FromJson<json3>(System.Text.Encoding.UTF8.GetString(msg.data));
-                if (!netIdToObj.ContainsKey(otherPos.Id))
+                otherInfo = JsonUtility.FromJson<json3>(System.Text.Encoding.UTF8.GetString(msg.data));
+                Vector3 vec = new Vector3(float.Parse(otherInfo.X), float.Parse(otherInfo.Y), 0);
+                if (!netIdToObj.ContainsKey(otherInfo.Id))
                 {
-                    netIdToObj[otherPos.Id] = createPerson(new Vector3(otherPos.X, otherPos.Y, 0), swordPrefab, Color.red, false, false, true);
-                    //netIdToObj[otherPos.Id].GetComponent<IPerson>().SpeedVal = 0; // 速度强制设置为0 靠transform强制更新
+                    netIdToObj[otherInfo.Id] = createPerson(vec, swordPrefab, Color.red, false, false, true);
+                    netIdToObj[otherInfo.Id].GetComponent<IPerson>().SpeedVal = 0; // 速度强制设置为0 靠transform强制更新
                     Debug.Log("创建other");
                 }
                 else
                 {
-                    var scriptIperson = netIdToObj[otherPos.Id].GetComponent<IPerson>();
+                    var scriptIperson = netIdToObj[otherInfo.Id].GetComponent<IPerson>();
 
-                    netIdToObj[otherPos.Id].transform.position = new Vector3(otherPos.X, otherPos.Y, 0);
-                    scriptIperson.State = otherPos.State;
-                    if (otherPos.State == State.attack)
+                    netIdToObj[otherInfo.Id].transform.position = vec;
+                    scriptIperson.State = otherInfo.State;
+                    if (otherInfo.State == State.attack)
                     {
                         scriptIperson.attack();
                     }
-                    scriptIperson.MoveVec = new Vector2(otherPos.MoveVecX, otherPos.MoveVecY);
+                    scriptIperson.MoveVec = new Vector2(float.Parse(otherInfo.MoveVecX), float.Parse(otherInfo.MoveVecY));
                     scriptIperson.move();
                 }
                 break;
